@@ -1,0 +1,161 @@
+/* Stil pentru textul general din secțiune */
+.p1 {
+  font-size: 0.7em;
+  color: rgba(84, 84, 84, 0.766);
+  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* Stil pentru linia sub titlul principal */
+.proteinLine {
+  height: 1px;
+  background-color: white;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto; /* Centrează secțiunea pe orizontală */
+  text-align: center;
+}
+
+/* Stil pentru titlul principal */
+.mainH1 {
+  font-size: 3em;
+}
+
+/* Stil pentru containerul principal al secțiunii */
+.mainSect {
+  width: 50%; /* Poți ajusta după preferințe, aceasta este lățimea containerului */
+  margin-top: 50px; /* Împinge secțiunea mai sus în pagină */
+  margin-left: auto;
+  margin-right: auto; /* Centrează secțiunea pe orizontală */
+  text-align: center; /* Centrează textul în container */
+  padding: 20px; /* Adaugă un spațiu interior pentru aerisirea textului */
+  display: flex;
+  flex-direction: column;
+}
+
+.mainSect p {
+  width: 80%; /* Reduce lățimea textului pentru a-l face mai compact */
+  margin-left: auto;
+  margin-right: auto; /* Centrează paragraful în container */
+  font-size: 0.9em; /* Micșorează ușor dimensiunea fontului dacă dorești */
+  line-height: 1.5; /* Face textul mai ușor de citit, ajustând distanța dintre linii */
+}
+
+/* Stil pentru butoane */
+.shopBtn,
+.checkVideoBtn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px; /* Micșorăm padding-ul pentru a face butoanele mai mici */
+  font-size: 0.9em; /* Micșorăm dimensiunea fontului */
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px 10px 0 0;
+  display: inline-block;
+  text-decoration: none; /* Elimină sublinierea link-ului */
+  color: inherit;
+  display: block;
+  width: auto; /* Setăm lățimea automată, în loc de 50%, pentru a face butoanele mai mici */
+}
+
+/* Stil pentru containerul care conține butoanele */
+.proteinButtons {
+  display: flex;
+  gap: 10px; /* Adaugă un spațiu între butoane */
+  margin-left: auto;
+  margin-right: auto; /* Centrează secțiunea pe orizontală */
+  text-align: center;
+}
+
+/* Stilul pentru secțiune să ocupe întreaga pagină */
+.oneSection {
+  background-position: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Alinează conținutul pe mijloc pe orizontală */
+  position: relative;
+}
+/* Stil pentru elementele din cadrul secțiunii */
+.elemPro {
+  display: flex;
+  flex-direction: column;
+  width: 25%; /* Setăm lățimea fiecărui element */
+  background-color: hsla(0, 0%, 24%, 0.968);
+  border-radius: 10px;
+  text-align: center;
+  align-items: center;
+  padding: 10px;
+  height: auto;
+}
+
+/* Stil pentru textul din interiorul fiecărui element */
+.elemPro p {
+  font-size: 0.7em;
+  font-weight: bold;
+}
+
+/* Stil pentru imaginile din interiorul fiecărui element */
+.elemPro img {
+  width: 30px;
+}
+
+/* Stil pentru containerul elementelor din secțiune */
+.elementPros {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Lățime completă pentru container */
+  position: absolute; /* Poziționează containerul absolut în cadrul secțiunii */
+  bottom: 10px; /* Lasă o margine mică în partea de jos */
+  padding: 0 20px; /* Adaugă padding pe laterale pentru a nu lipi elementele de margini */
+}
+
+/* Stil pentru containerul butoanelor */
+.iconButtons {
+  position: fixed; /* Fixează butoanele în partea de jos a ecranului */
+  bottom: 0; /* Poziționează la marginea de jos */
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center; /* Centrează butoanele pe orizontală */
+  gap: 10px; /* Spațiu între butoane */
+  padding: 10px;
+  z-index: 1000; /* Asigură-te că butoanele stau deasupra altor elemente */
+  transition: bottom 1s;
+  height: auto; /* Dimensiune normală */
+}
+
+/* Stil pentru butoane */
+.iconButton {
+  background: none; /* Elimină orice fundal de pe butoane */
+  border: none; /* Fără margini */
+  padding: 0; /* Elimină padding-ul implicit */
+  cursor: pointer;
+}
+
+.hidden {
+  bottom: -100px; /* Ascundem header-ul în afara ecranului */
+}
+
+/* Stil pentru imagini (iconițe) */
+.icon {
+  width: 50px;
+  cursor: pointer;
+  display: block;
+  background: none; /* Elimină orice fundal de la imagini */
+}
+
+/* Eliminarea fundalului alb */
+.icon img {
+  background-color: transparent; /* Asigură-te că fundalul este transparent */
+}
+
+.icon:hover {
+  transform: scale(1.1); /* Efect hover - mărește ușor iconițele */
+  transition: transform 0.3s ease;
+}

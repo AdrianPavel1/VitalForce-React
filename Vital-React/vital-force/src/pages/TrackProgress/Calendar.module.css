@@ -1,0 +1,85 @@
+* {
+  box-sizing: border-box;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Arial", sans-serif;
+  background-color: #3333333b; /* Fundal întunecat pentru calendar */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Schimbă de la space-between la center */
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.header button {
+  background-color: #00a2ff; /* Verde pentru butoane */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.header button:hover {
+  background-color: #007ec7; /* Nuanta mai închisă la hover */
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.month {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px; /* Spațiu între zile */
+}
+
+.day {
+  padding: 5px;
+  border: 1px solid #555; /* Contur mai închis pentru zile */
+  border-radius: 5px;
+  text-align: center;
+  background-color: #444; /* Fundal întunecat pentru zile */
+  position: relative;
+  transition: transform 0.2s ease;
+  width: 35px; /* Lățime fixă pentru zile */
+}
+
+.day:hover {
+  transform: translateY(-3px);
+}
+
+.highlight {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #2ecc71;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

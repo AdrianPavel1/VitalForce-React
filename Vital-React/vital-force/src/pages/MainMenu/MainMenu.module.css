@@ -1,0 +1,139 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #111;
+  color: #fff;
+  line-height: 1.6;
+}
+
+.btnExplore a {
+  text-decoration: none; /* Elimină sublinierea */
+  color: inherit; /* Face textul să moștenească culoarea din buton */
+  display: block; /* Face elementul <a> să ocupe întreg butonul */
+  width: 100%; /* Ocupă întreaga lățime a butonului */
+  height: 100%; /* Ocupă întreaga înălțime a butonului */
+  text-align: center; /* Centrare pe orizontală a textului */
+  line-height: inherit; /* Asigură că textul rămâne centrat vertical */
+  font-size: 0.8rem;
+}
+
+/* Stiluri pentru buton (dacă vrei să adaugi ceva) */
+.btnExplore {
+  background-color: #007bff; /* O culoare albastră pentru buton */
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+
+.btnExplore:hover {
+  background-color: #0056b3; /* Culoare de hover */
+}
+
+.pictureVisual {
+  position: relative;
+  text-align: center;
+}
+
+.pictureVisualImage {
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+  opacity: 0.7;
+}
+
+.pictureVisualText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+}
+
+.pictureVisualText h2 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.pictureVisualText p {
+  font-size: 1.2em;
+}
+
+/* Four Elements Section */
+.fourElements {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px 0;
+  background-color: #222;
+}
+
+.element {
+  width: 22%;
+  background-color: #111;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.element h3 {
+  font-size: 1.2em;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.element p {
+  font-size: 0.9em;
+  margin-bottom: 20px;
+}
+
+.element button {
+  background-color: #29a8ff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.element button:hover {
+  background-color: #1e7abd;
+}
+
+/* VR Element */
+.element.vr {
+  display: flex;
+  align-items: center; /* Aliniere verticală a imaginii și textului */
+  background-color: #00bcd4; /* Culoare fundal */
+  color: #111; /* Culoare text */
+  padding: 20px; /* Spațiere internă */
+}
+
+.element.vr img {
+  max-width: 100px; /* Lățimea imaginii */
+  margin-right: 20px; /* Spațiu între imagine și text */
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #111;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.getFitSection {
+  margin-bottom: 20px;
+}
+
+.getFitSection h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.getFitSection p {
+  font-size: 1.2em;
+}

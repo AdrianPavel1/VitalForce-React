@@ -1,0 +1,374 @@
+.myMeals {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5% 0;
+  width: 60vw;
+  background: linear-gradient(
+    to bottom,
+    #1e1e2f,
+    #000000
+  ); /* gradient de sus în jos */
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* umbră pentru un efect modern */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.addMealButton,
+.saveButtonMeal {
+  border-radius: 5px;
+  width: 120px;
+  height: 45px;
+  background-color: transparent;
+  cursor: pointer;
+  border: 2px solid #00a2ff;
+  color: #00a2ff; /* text albastru */
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.addMealButton:hover,
+.saveButtonMeal:hover {
+  background-color: #00a2ff;
+  color: white;
+  border-radius: 10px;
+}
+
+.mealsContainer {
+  border-radius: 10px;
+  margin: 5%;
+  width: 100%;
+  max-height: 50vh; /* max-height pentru a face containerul scrollabil */
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 10px;
+  background-color: #292945; /* fundal mai închis pentru container */
+  /* display: none; */
+}
+/* .mealsContainer.visible {
+  display: flex;
+} */
+
+.meal {
+  border: 2px solid #00a2ff;
+  border-radius: 10px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  align-items: center;
+  background-color: #1e1e2f; /* fundal întunecat pentru fiecare meal */
+  color: #f5f5f5; /* text alb */
+}
+
+.mealDetails {
+  font-size: 16px;
+}
+
+.mealBttns {
+  display: flex;
+  gap: 10px;
+}
+
+.mealBttns button,
+.howMuch button {
+  border: none;
+  border-radius: 5px;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: transparent;
+  cursor: pointer;
+  color: #00a2ff;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.mealBttns button:hover:nth-child(1) {
+  border: 2px solid green;
+  background-color: green;
+  color: white;
+}
+
+.mealBttns button:hover:nth-child(2) {
+  border: 2px solid rgb(235, 85, 85);
+  background-color: rgb(235, 85, 85);
+  color: white;
+}
+
+.editMeal {
+  border: none;
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom, #1e1e2f, #000000);
+  color: #f5f5f5;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  display: none;
+}
+
+.editMeal.visible {
+  display: flex;
+}
+
+.editMealNameContent {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background-color: #292945;
+  padding: 10px 15px;
+  border-radius: 10px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.iconBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.icon {
+  background: transparent;
+  font-size: 24px;
+  color: #00a2ff; /* albastru accent */
+  border: 2px solid #00a2ff;
+  border-radius: 50%;
+  padding: 8px;
+  transition: all 0.3s ease;
+}
+
+.icon:hover {
+  background-color: #00a2ff;
+  color: #fff;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  gap: 5%;
+}
+
+.addedResults {
+  background: linear-gradient(to bottom, #1e1e2f, #000000);
+  width: 90%;
+  height: 100%;
+  border-radius: 10px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 25vh;
+  overflow-y: auto;
+}
+
+.addedResults h3 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.foodItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  height: 30%;
+  margin: 10px;
+  border-top: 2px solid #30304b;
+  align-items: center;
+}
+
+.foodContainer {
+  height: 100%;
+}
+.foodContainer button {
+  margin-right: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.foodContainer button:hover {
+  color: red;
+}
+.totals {
+  padding: 5px;
+  border-radius: 10px;
+  width: 50%;
+}
+
+.totals h3 {
+  color: #00a2ff;
+}
+
+.nutrientList {
+  list-style: none;
+  padding-left: 0;
+}
+
+.nutrientList li {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  margin-top: 5%;
+  border-radius: 10px;
+}
+
+.searchBar input,
+.editName,
+.enterGrams {
+  background-color: #1e1e2f;
+  border: 1px solid #00a2ff;
+  color: #f5f5f5;
+  padding: 5px;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.searchBar button {
+  background-color: #00a2ff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.searchBar button:hover {
+  background-color: #008cd1;
+}
+
+.searchresults {
+  background: linear-gradient(to bottom, #292945, rgba(41, 41, 69, 0));
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+  color: #f5f5f5;
+}
+
+.result {
+  background: linear-gradient(to bottom, #5a5a81, #292945, #10101b);
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.allResults {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  margin-top: 20px;
+}
+
+.saveButtonMeal {
+  margin: 20px;
+}
+
+.resultButtonMenu {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.resultButtonMenuIcon:hover {
+  color: #00a2ff;
+}
+
+.certainMealDetails {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+}
+.closeBtn {
+  background-color: transparent;
+  border: none;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.xSign:hover {
+  color: #008cd1;
+}
+
+.mealMacros {
+  width: 80%;
+}
+.mealMacros ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 10px;
+  align-items: center;
+}
+
+.howMuch button:hover {
+  color: white;
+}
+
+.carbsProcentage {
+  color: rgb(40, 201, 222);
+}
+
+.fatProcentage {
+  color: rgb(164, 112, 224);
+}
+
+.proteinProcentage {
+  color: rgb(226, 149, 71);
+}
+
+.circleMacros {
+  position: relative; /* Pentru a permite poziționarea absolută a fundalului */
+  width: 100px; /* Ajustează dimensiunea după cum ai nevoie */
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 50%; /* Pentru a face elementul rotund */
+}
+
+.flameBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.circleMacros h2,
+.circleMacros p {
+  z-index: 1;
+  margin: 0;
+  color: #ffffff;
+}
+
+.saveButtonMeal.visible {
+  display: flex;
+  align-items: center;
+  margin-top: 20vh;
+}

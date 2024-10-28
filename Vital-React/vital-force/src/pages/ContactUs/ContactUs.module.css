@@ -1,0 +1,67 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #000; /* Fundal negru */
+  color: #fff; /* Text alb */
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.contactInfo {
+  margin-bottom: 40px;
+}
+
+.contactInfo h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.messageForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px; /* Lățimea maximă a formularului */
+  align-items: stretch; /* Alinează elementele pe întreaga lățime */
+  margin: 0 auto; /* Asigură centrul pe lățimea paginii */
+}
+
+.inputField,
+.textAreaField {
+  width: 100%; /* Inputurile să ocupe toată lățimea formularului */
+  padding: 10px;
+  margin: 10px 0; /* Margină verticală pentru distanțare */
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #222; /* Fundal pentru inputuri */
+  color: #fff; /* Text alb pentru inputuri */
+}
+
+.textAreaField {
+  height: 100px; /* Înălțimea pentru textarea */
+}
+
+.submitButton {
+  width: 100%; /* Butonul ocupă toată lățimea formularului */
+  padding: 10px 20px;
+  background-color: #ff0000; /* Fundal roșu pentru buton */
+  color: #fff; /* Text alb pentru buton */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px; /* Margină superioară pentru distanțare */
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #d40000; /* Culoare mai închisă la hover */
+}

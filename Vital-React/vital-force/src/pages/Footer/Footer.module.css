@@ -1,0 +1,93 @@
+/* src/Footer/Footer.module.css */
+.footer {
+  background: linear-gradient(to bottom, #000, #222, #444, #e0e0e0);
+  color: #fff; /* Culoarea textului */
+  padding: 20px 0;
+}
+
+.getFitSection {
+  text-align: center; /* Centrarea textului în secțiunea de sus */
+  margin-bottom: 10%;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.getFitSection h2 {
+  font-size: 2em;
+}
+.footerContent {
+  display: flex;
+  justify-content: center; /* Centrează secțiunile pe orizontală */
+  align-items: center; /* Aliniază secțiunile pe verticală */
+  gap: 20px; /* Adaugă spațiu între secțiuni */
+  padding: 10px 0; /* Ajustarea padding-ului */
+  border-top: 1px solid #444;
+}
+
+.footerSection {
+  width: 30%; /* Menține lățimea secțiunilor */
+  text-align: center; /* Centrează textul din secțiuni */
+}
+
+.footerSection h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #00a2ff; /* Culoarea titlurilor din footer */
+}
+
+.footerSection p {
+  font-size: 0.9em;
+  margin-bottom: 15px; /* Am mărit spațiul între paragraf și lista de linkuri */
+}
+
+.footerSection ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footerSection ul li {
+  margin: 5px 0;
+}
+
+.footerSection ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footerSection ul li a:hover {
+  text-decoration: underline;
+  color: #c9c9c9;
+}
+
+/* Footer Bottom */
+.footerBottom {
+  margin-top: 10px; /* Reducerea spațiului de deasupra footer-ului inferior */
+  font-size: 0.8em;
+  color: #aaa;
+  text-align: center; /* Centrează textul în footer-ul inferior */
+  padding: 10px 0; /* Adăugat padding pentru un spațiu suplimentar */
+}
+
+/* Underline Styles */
+.underline {
+  border: 0;
+  border-top: 2px solid #00a2ff;
+  margin: 10px auto; /* Ajustarea marginii pentru a fi consistentă */
+  width: 80%;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .footerContent {
+    flex-direction: column; /* Stivuiește secțiunile pe verticală */
+    align-items: center; /* Centrează secțiunile pe orizontală */
+    gap: 20px; /* Spațiu între secțiuni pe mobil */
+  }
+
+  .footerSection {
+    width: 90%; /* Lățime mai mare pentru secțiunile din footer pe mobil */
+    margin-bottom: 20px; /* Spațiu între secțiuni */
+    text-align: center; /* Centrează textul în secțiuni pe mobil */
+  }
+}
