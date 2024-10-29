@@ -201,12 +201,12 @@ router.post("/search-foods", async (req, res) => {
 });
 
 router.get("/get-macros", async (req, res) => {
-  const { username, date } = req.query; // Extragem username și date din query params
+  const { username, date } = req.query;
 
   try {
     const db = await connectToDataBase();
 
-    // Dacă nu s-a specificat o dată, folosim data curentă
+    // Setăm data curentă dacă nu este furnizată o dată specifică
     const targetDate = date || new Date().toISOString().split("T")[0];
 
     const [rows] = await db.query(
@@ -215,13 +215,16 @@ router.get("/get-macros", async (req, res) => {
     );
 
     if (rows.length === 0) {
-      return res
-        .status(404)
-        .json({ message: "No macros found for this date." });
+      // Returnăm statusul 200 cu un array gol dacă nu sunt date pentru data respectivă
+      return res.status(200).json({
+        macros: [], // Array gol pentru date lipsă
+        message: "No macros found for this date.",
+      });
     }
 
+    // Dacă există date, returnăm primul rând
     return res.status(200).json({
-      macros: rows[0], // Returnează primul rezultat găsit
+      macros: rows[0],
     });
   } catch (err) {
     console.error(err);
@@ -376,7 +379,7 @@ router.delete("/delete-meal", async (req, res) => {
 });
 
 // Ruta pentru obținerea meselor
-router.get("/get-meals", async (req, res) => {
+router.get("/getCard-meals", async (req, res) => {
   const { username, date } = req.query;
 
   // Dacă nu este furnizată o dată, folosim data curentă

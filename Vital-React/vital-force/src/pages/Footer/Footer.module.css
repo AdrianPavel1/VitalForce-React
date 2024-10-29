@@ -1,5 +1,6 @@
 /* src/Footer/Footer.module.css */
 .footer {
+  margin-top: 10%;
   background: linear-gradient(to bottom, #000, #222, #444, #e0e0e0);
   color: #fff; /* Culoarea textului */
   padding: 20px 0;

@@ -14,23 +14,32 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* umbră pentru un efect modern */
   margin-left: auto;
   margin-right: auto;
+  height: auto;
 }
 
+.modifyMealsButtons {
+  display: flex;
+  gap: 10px;
+}
 .addMealButton,
-.saveButtonMeal {
+.saveButtonMeal,
+.saveChanges {
   border-radius: 5px;
-  width: 120px;
-  height: 45px;
+  width: 90px;
+  height: 50%;
   background-color: transparent;
   cursor: pointer;
   border: 2px solid #00a2ff;
   color: #00a2ff; /* text albastru */
   font-weight: bold;
   transition: all 0.3s ease;
+  margin: 20px;
+  padding: 10px;
 }
 
 .addMealButton:hover,
-.saveButtonMeal:hover {
+.saveButtonMeal:hover,
+.saveChanges:hover {
   background-color: #00a2ff;
   color: white;
   border-radius: 10px;
@@ -38,18 +47,17 @@
 
 .mealsContainer {
   border-radius: 10px;
-  margin: 5%;
+  margin: 20px 5% 10px 5%;
   width: 100%;
-  max-height: 50vh; /* max-height pentru a face containerul scrollabil */
-  overflow-y: auto;
+  max-height: 300px; /* max-height pentru a face containerul scrollabil */
+  overflow-y: scroll;
+  padding-right: 15px;
   scroll-behavior: smooth;
   padding: 10px;
-  background-color: #292945; /* fundal mai închis pentru container */
-  /* display: none; */
+  background-color: #171725;
+  display: none;
+  height: 100%;
 }
-/* .mealsContainer.visible {
-  display: flex;
-} */
 
 .meal {
   border: 2px solid #00a2ff;
@@ -72,6 +80,13 @@
   gap: 10px;
 }
 
+.howMuch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
 .mealBttns button,
 .howMuch button {
   border: none;
@@ -85,6 +100,9 @@
   transition: all 0.3s ease;
 }
 
+.howMuch button:hover {
+  background-color: #0184cf;
+}
 .mealBttns button:hover:nth-child(1) {
   border: 2px solid green;
   background-color: green;
@@ -100,7 +118,7 @@
 .editMeal {
   border: none;
   width: 50vw;
-  height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -221,7 +239,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 20px;
   margin-top: 5%;
   border-radius: 10px;
 }
@@ -234,25 +251,33 @@
   color: #f5f5f5;
   padding: 5px;
   border-radius: 5px;
-  width: 200px;
+  width: 100%;
 }
 
 .searchBar button {
-  background-color: #00a2ff;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 15px;
+  background-color: transparent;
+  border: 2px solid #00a2ff;
+  border-radius: 50%;
+  padding: 8px;
   color: white;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
   transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .searchBar button:hover {
   background-color: #008cd1;
 }
 
+.search {
+  font-size: 1em;
+}
 .searchresults {
-  background: linear-gradient(to bottom, #292945, rgba(41, 41, 69, 0));
+  background-color: #0c0c13;
   width: 100%;
   padding: 15px;
   border-radius: 10px;

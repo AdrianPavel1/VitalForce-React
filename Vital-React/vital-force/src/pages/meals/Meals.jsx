@@ -2,9 +2,10 @@ import styles from "./Meals.module.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FlameSvg from "../../assets/flame";
-
+import Calendar from "../TrackProgress/Calendar";
 function Meals(props) {
-  const username = props.username;
+  // const username = props.username;
+  const { username, sendDate } = props;
 
   const [editingIndex, setEditingIndex] = useState(null);
   const [visibleMeal, setVisibleMeal] = useState(false);
@@ -12,6 +13,33 @@ function Meals(props) {
   const [tempMealName, setTempMealName] = useState("");
   const [mealDetails, setMealDetails] = useState(false);
   const [callSendMacrosData, setCallSendMacrosData] = useState(false);
+  const [macrosData, setMacrosData] = useState(null);
+  const [error, setError] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(() => {
+    const storedDate = localStorage.getItem("selectedDate");
+    return storedDate ? new Date(storedDate) : null;
+  });
+
+  //ia data din child element (calendar)
+  //normal acesta era corect dar este o problema cu fusul orar si imi da in minus cu o zi, asa ca am ales sa adaug o zi la functia aceasta:
+  // const handleDateSelect = (date) => {
+  //   const formattedDate = date.toISOString().split("T")[0];
+  //   localStorage.setItem("selectedDate", formattedDate);
+  //   setSelectedDate(formattedDate);
+
+  //   console.log("Selected date in Meals:", formattedDate);
+  // };
+  const handleDateSelect = (date) => {
+    // Adaugă o zi la data selectată
+    const nextDate = new Date(date);
+    nextDate.setDate(nextDate.getDate() + 1); // Adaugă o zi
+
+    const formattedDate = nextDate.toISOString().split("T")[0];
+    localStorage.setItem("selectedDate", formattedDate);
+    setSelectedDate(formattedDate);
+    fetchCardMeals(formattedDate);
+    console.log("Selected date in Meals:", formattedDate);
+  };
 
   //folosit pentru indexul cautarii in baza de date:
   const [mealIndex, setMealIndex] = useState(null);
@@ -320,7 +348,7 @@ function Meals(props) {
       proteins: uiTotals.protein,
       carbs: uiTotals.carbs,
       fats: uiTotals.fat,
-      date: new Date().toISOString().split("T")[0],
+      date: selectedDate || new Date().toISOString().split("T")[0],
     };
 
     try {
@@ -342,50 +370,49 @@ function Meals(props) {
     }
   };
 
-  const [macrosData, setMacrosData] = useState(null);
-  const [error, setError] = useState(null);
+  // const getMacrosData = async (date) => {
+  //   const data = {
+  //     username: props.username, // Numele utilizatorului primit prin props
+  //     date: date || new Date().toISOString().split("T")[0], // Data curentă sau data specificată
+  //   };
 
-  const getMacrosData = async (date) => {
-    const data = {
-      username: props.username, // Numele utilizatorului primit prin props
-      date: date || new Date().toISOString().split("T")[0], // Data curentă sau data specificată
-    };
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:3000/auth/get-macros`,
+  //       {
+  //         params: {
+  //           username: data.username,
+  //           date: data.date,
+  //         },
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
 
-    try {
-      const response = await axios.get(
-        `http://localhost:3000/auth/get-macros`,
-        {
-          params: {
-            username: data.username,
-            date: data.date,
-          },
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      // Verificăm dacă răspunsul conține datele așteptate
-      if (response.status === 200) {
-        setMacrosData(response.data.macros); // Stocăm datele în stare
-      } else {
-        console.log("Unexpected response:", response);
-      }
-    } catch (err) {
-      console.error("Error fetching macros data:", err);
-      setError("An error occurred while fetching macros data."); // Setăm mesajul de eroare
-    }
-  };
+  //     // Verificăm dacă răspunsul conține datele așteptate
+  //     if (response.status === 200) {
+  //       setMacrosData(response.data.macros); // Stocăm datele în stare
+  //     } else {
+  //       console.log("Unexpected response:", response);
+  //     }
+  //   } catch (err) {
+  //     console.error("Error fetching macros data:", err);
+  //     setError("An error occurred while fetching macros data."); // Setăm mesajul de eroare
+  //   }
+  // };
 
   useEffect(() => {
-    getMacrosData();
-    fetchMeals();
+    // getMacrosData();
+    fetchCardMeals(selectedDate);
   }, []);
 
   const sendMealsData = async () => {
     const data = {
       username: props.username,
-      date: new Date().toISOString().split("T")[0], // Sau specifică data dorită
+      date: selectedDate
+        ? selectedDate
+        : new Date().toISOString().split("T")[0], // Sau specifică data dorită
       meals: cardMeal, // Array-ul de mese din useState
     };
 
@@ -409,16 +436,21 @@ function Meals(props) {
   };
 
   // Funcția pentru a obține mesele
-  const fetchMeals = async (date = null) => {
-    const currentDate = date || new Date().toISOString().split("T")[0]; // Data curentă
+  const fetchCardMeals = async (date = null) => {
+    const currentDate = date ? date : new Date().toISOString().split("T")[0];
 
+    console.log("currentDate:", currentDate);
+    console.log("seLECTAT::", selectedDate);
     try {
-      const response = await axios.get("http://localhost:3000/auth/get-meals", {
-        params: {
-          username: props.username,
-          date: currentDate,
-        },
-      });
+      const response = await axios.get(
+        "http://localhost:3000/auth/getCard-meals",
+        {
+          params: {
+            username: props.username,
+            date: currentDate,
+          },
+        }
+      );
 
       const fetchedMeals = response.data;
 
@@ -450,6 +482,7 @@ function Meals(props) {
     console.log(cardMeal);
     sendMacrosData();
     sendMealsData();
+    window.location.reload();
   };
 
   // useEffect(() => {
@@ -460,22 +493,44 @@ function Meals(props) {
   //   }
   // }, [callSendMacrosData]);
 
+  const afisare = () => {
+    // handleDateSelect(selectedDate);
+    // console.log(
+    //   "DATA SELECTATA DE MINE :",
+    //   selectedDate.toISOString().split("T")[0]
+    // );
+    // console.log(selectedDate);
+    // handleDateSelect(selectedDate);
+    // fetchCardMeals();
+    const date = selectedDate.toISOString().split("T")[0];
+    sendDate(date);
+    console.log(date);
+  };
+
   return (
     <>
       <h2>{props.progress}</h2>
       <h2>{props.fats}</h2>
       <h2>{props.proteins}</h2>
       <h2>{props.carbs}</h2>
-      <button onClick={() => afisare()}>sall12222</button>
-      <button onClick={() => handleSendAllDataToDatabase()}>backENDD</button>
+      {/* <button onClick={() => afisare()}>sall12222</button> */}
+
       <div className={styles.myMeals}>
         <h1>My Meals</h1>
-        <button className={styles.addMealButton} onClick={addMealHandler}>
-          Add Meal
-        </button>
+        <div className={styles.modifyMealsButtons}>
+          <button className={styles.addMealButton} onClick={addMealHandler}>
+            Add Meal
+          </button>
+          <button
+            className={styles.saveChanges}
+            onClick={() => handleSendAllDataToDatabase()}
+          >
+            Save All
+          </button>
+        </div>
         <div
           className={styles.mealsContainer}
-          // style={{ display: cardMeal.length > 0 ? "flex" : "none" }}
+          style={{ display: cardMeal.length > 0 ? "block" : "none" }}
         >
           {cardMeal.map((meal, index) => (
             <div key={index} className={styles.meal}>
@@ -552,10 +607,12 @@ function Meals(props) {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
               <button id="searchButton" onClick={handleSearch}>
-                Search
+                <span className={`${styles.search} material-symbols-outlined`}>
+                  search
+                </span>
               </button>
             </div>
-            {/* aici---------------------------------------------------------------------------------------------------------------------- */}
+
             <div className={styles.allResults}>
               <div className={styles.searchresults}>
                 {searchResults.length > 0 ? (
@@ -668,6 +725,7 @@ function Meals(props) {
           </div>
         )}
       </div>
+      <Calendar onDateSelect={handleDateSelect} />
     </>
   );
 }

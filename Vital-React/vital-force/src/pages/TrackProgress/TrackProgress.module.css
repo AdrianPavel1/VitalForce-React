@@ -4,7 +4,37 @@
   padding: 50px;
   height: 60vh;
   /* width: 100vw; */
-  margin-top: 3%;
+  margin-top: 10%;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.backgroundVideo {
+  position: absolute; /* Poziționează video-ul în fundal */
+  top: 50%;
+  left: 50%;
+  width: 100%; /* Asigură-te că video-ul ocupă întreaga lățime */
+  height: 100%; /* Asigură-te că video-ul ocupă întreaga înălțime */
+  object-fit: cover; /* Face ca video-ul să se adapteze la dimensiunea containerului */
+  transform: translate(-50%, -50%); /* Centrează video-ul */
+  z-index: -1; /* Asigură-te că video-ul este sub celelalte conținuturi */
+}
+
+.overlay {
+  position: absolute; /* Poziționează overlay-ul deasupra video-ului */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.9),
+    /* Negru mai accentuat cu opacitate 0.9 în sus */ rgba(0, 0, 0, 0),
+    /* Transparent la mijloc */ rgba(0, 0, 0, 0.9)
+      /* Negru mai accentuat cu opacitate 0.9 în jos */
+  );
+  z-index: 1; /* Asigură-te că overlay-ul este deasupra video-ului */
 }
 
 .toodayProgress {
@@ -13,6 +43,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  z-index: 3;
 }
 
 .progressTitle {
@@ -70,7 +101,7 @@
 }
 
 .DetailsSectionTitle {
-  padding: 10px;
+  padding: 20px;
   font-size: 1.5em;
   display: flex;
   justify-content: center;

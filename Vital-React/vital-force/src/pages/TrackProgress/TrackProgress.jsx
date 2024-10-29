@@ -4,6 +4,7 @@ import kcalImg from "../../png/kcal.png";
 import proteinImg from "../../png/protein-powder.png";
 import carbsImg from "../../png/carbohydrates.png";
 import fatImg from "../../png/no-fat.png";
+import video from "../../images/coverProgress.mp4";
 import Calendar from "./Calendar";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -174,14 +175,15 @@ function TrackProgress() {
   }, [profile]);
 
   const [macrosData, setMacrosData] = useState(null);
-  const [error, setError] = useState(null); // Adaugă un state pentru eroare
+  const [error, setError] = useState(null);
+  const [choosedDate, setChoosedDate] = useState(null);
 
   const getMacrosData = async (date) => {
     const data = {
       username: username, // Numele utilizatorului primit prin props
       date: date || new Date().toISOString().split("T")[0], // Data curentă sau data specificată
     };
-
+    console.log("data din track cand apelez functia este:", date);
     try {
       const response = await axios.get(
         `http://localhost:3000/auth/get-macros`,
@@ -209,35 +211,55 @@ function TrackProgress() {
   };
 
   useEffect(() => {
-    getMacrosData();
+    const storedDate = localStorage.getItem("selectedDate");
+    if (storedDate) {
+      console.log(
+        "elementul din useEfect din TrackProgress este: ",
+        storedDate
+      );
+      setChoosedDate(storedDate);
+      getMacrosData(storedDate);
+    }
   }, []);
 
   const calculatePercentage = (consumed, total) => {
     return total > 0 ? Math.min((consumed / total) * 100, 100) : 0;
   };
 
-  let caloriesPercentage = macrosData
-    ? calculatePercentage(macrosData.calories, calories)
-    : 0;
-  let proteinsPercentage = macrosData
-    ? calculatePercentage(macrosData.proteins, proteins)
-    : 0;
-  let carbsPercentage = macrosData
-    ? calculatePercentage(macrosData.carbs, carbs)
-    : 0;
-  let fatsPercentage = macrosData
-    ? calculatePercentage(macrosData.fats, fats)
-    : 0;
+  let caloriesPercentage =
+    macrosData && calories
+      ? calculatePercentage(macrosData.calories || 0, calories)
+      : 0;
+  let proteinsPercentage =
+    macrosData && proteins
+      ? calculatePercentage(macrosData.proteins || 0, proteins)
+      : 0;
+  let carbsPercentage =
+    macrosData && carbs ? calculatePercentage(macrosData.carbs || 0, carbs) : 0;
+  let fatsPercentage =
+    macrosData && fats ? calculatePercentage(macrosData.fats || 0, fats) : 0;
 
   const afisare = () => {
-    console.log("Macros pe pagina a 2 a :", macrosData);
-    console.log("protein percentage::", proteinsPercentage);
+    // console.log("Macros pe pagina a 2 a :", macrosData);
+    // console.log("protein percentage::", proteinsPercentage);
+    console.log(choosedDate);
   };
   return (
     <>
       {<Header />}
 
       <div className={style.mainContainer}>
+        <video
+          className={style.backgroundVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src={video} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className={style.overlay}></div>
         <div className={style.toodayProgress}>
           <div className={style.progressTitle}>
             <h2>Tooday Progress</h2>
@@ -322,11 +344,6 @@ function TrackProgress() {
             </div>
           </section>
         </div>
-
-        <div className={style.calendar}>
-          <h2>Strake Calendar</h2>
-          {<Calendar />}
-        </div>
       </div>
 
       <section className={style.detailsSection}>
@@ -352,7 +369,7 @@ function TrackProgress() {
           </div>
         </div>
       </section>
-      <Meals username={username} />
+      <Meals username={username} sendDate={setChoosedDate} />
       <Footer />
     </>
   );
