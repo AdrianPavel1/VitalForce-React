@@ -1,0 +1,553 @@
+.intro {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.intro h1 {
+  font-size: 3em;
+}
+.intro .Line {
+  background-color: #ffffff;
+  height: 1px;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  padding: 5%;
+  align-items: center;
+}
+
+.table {
+  width: 100%;
+  height: 200px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  color: white;
+}
+
+th {
+  background-color: #009acd;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+td {
+  background-color: rgba(0, 0, 0, 0.8);
+  font-size: 14px;
+}
+
+.firstP {
+  font-size: 1.5em;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+
+  padding: 0px;
+}
+
+.backgroundImage {
+  background-image: url("images/image1.jpg");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.contentContainer {
+  position: relative;
+  width: 80%;
+  height: auto;
+  z-index: 2;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.intro h1,
+.contentContainer h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.contentContainer h1 {
+  color: #00acee;
+}
+
+.orderSection {
+  text-align: center;
+  margin-bottom: 20px;
+  height: auto;
+}
+
+.detalis {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  background: linear-gradient(to right, #ffffff, #009acd);
+
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+  max-height: 300px;
+}
+
+.ingredients,
+.methods {
+  flex: 1;
+  padding: 20px;
+  margin: 0 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  text-align: left;
+  overflow-y: auto;
+  max-height: 250px;
+  color: #333;
+}
+
+.ingredients ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.ingredients li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #009acd;
+  padding: 5px 0;
+}
+.methods {
+  flex: 1;
+  padding: 20px;
+  margin: 0 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  max-height: 250px;
+  color: #333;
+}
+
+.methods p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #009acd;
+}
+
+.methods p::before {
+  content: "▶ ";
+  color: #009acd;
+  font-weight: bold;
+}
+
+.mealName {
+  margin-top: 10vh;
+  padding: 20px;
+}
+
+.menuItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../../assets/wave.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.overlay3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 50%, rgb(0, 0, 0) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.aboutYou h2 {
+  margin-top: 20px;
+  color: #009acd;
+  position: relative;
+  z-index: 2;
+}
+
+.userProfileSection {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.userProfileSection h1 {
+  color: #009acd;
+}
+.mainUserH1 span {
+  margin-left: 0.5em;
+}
+.photoSpace {
+  width: 120px;
+  height: 120px;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2),
+    0 0 15px rgba(0, 154, 205, 0.6);
+  animation: pulse 2s infinite;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.photoSpace:hover {
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3),
+    0 0 25px rgba(0, 154, 205, 0.8);
+  transform: scale(1.05);
+}
+
+.roundImage {
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+}
+
+.itemInfo {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.itemInfo h2 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.itemInfo p {
+  font-size: 1rem;
+  color: #bbb;
+  margin-bottom: 10px;
+}
+
+.mealSelect {
+  width: 40%;
+  padding: 8px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #333;
+  color: #00acee;
+  text-align: center;
+}
+
+.mealSelect option {
+  background-color: #000;
+  color: #00acee;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 5vh 30% 5vh 30%;
+}
+
+.navButton {
+  background-color: #00acee;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navButton:hover {
+  background-color: #009acd;
+}
+
+.videoContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.backgroundVideo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.gradientOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0, 0.108),
+    rgba(0, 0, 0, 1)
+  );
+  z-index: 2;
+}
+
+.mealContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000;
+  height: 50vh;
+}
+
+.mealContainer h2 {
+  font-size: 1em;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+}
+
+.mealPicture {
+  background-size: cover;
+  background-position: center;
+  width: 30vw;
+  height: 30vh;
+  position: relative;
+  margin: 10px auto;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 171, 238, 0.744);
+  transition: all 0.3s ease;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mealPicture:hover .overlay {
+  opacity: 1;
+}
+
+.message {
+  color: #fff;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .table {
+    padding: 10px;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+    width: 100%;
+  }
+
+  tr {
+    margin-bottom: 10px;
+  }
+
+  th {
+    display: none;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+
+  td::before {
+    content: attr(dataLabel);
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #009acd;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 480px), (max-width: 768px) {
+  .aboutYou h2 {
+    margin-top: 20px;
+    color: #009acd;
+    position: relative;
+    z-index: 2;
+    width: 150px;
+    text-align: center;
+  }
+
+  .mealSelect {
+    width: 90%;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #333;
+    color: #00acee;
+    text-align: center;
+  }
+
+  .mealSelect option {
+    background-color: #000;
+    color: #00acee;
+  }
+
+  .detalis {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    width: 140%;
+    max-height: 80vh;
+  }
+
+  .orderSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .itemInfo {
+    margin: 0;
+  }
+  .orderPanel {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ingredients {
+    padding: 10px;
+    text-align: left;
+    overflow-y: auto;
+    height: 50%;
+  }
+  .methods {
+    height: 50%;
+    margin-top: 20px;
+  }
+
+  .table {
+    padding: 10px;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+    width: 100%;
+  }
+
+  tr {
+    margin-bottom: 10px;
+  }
+
+  th {
+    display: none;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+
+  td::before {
+    content: attr(dataLabel);
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #009acd;
+    margin-right: 10px;
+  }
+
+  .mealContainer h2 {
+    font-size: 0.7em;
+    text-align: center;
+  }
+  .mealPicture {
+    background-size: cover;
+    background-position: center;
+    width: 60vw;
+    height: 40vh;
+    margin: 10px auto;
+  }
+}

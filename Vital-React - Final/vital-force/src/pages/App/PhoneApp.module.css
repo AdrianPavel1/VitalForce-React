@@ -1,0 +1,61 @@
+.mainDiv {
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.appDescription {
+  text-align: left;
+  background: transparent;
+  padding: 20px;
+  position: absolute;
+  z-index: 1;
+  width: 40%;
+  margin-left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+.appTitle {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.appInfo {
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.downloadButton {
+  font-size: 0.5rem;
+  font-weight: bold;
+  color: white;
+  background-color: #02aacc;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 20px;
+}
+
+.downloadButton:hover {
+  background-color: #007087;
+}
+
+@media (max-width: 768px) {
+  .appDescription {
+    top: 20%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+  }
+}

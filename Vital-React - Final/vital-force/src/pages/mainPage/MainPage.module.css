@@ -1,0 +1,237 @@
+.pageContainer {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url("images/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.redSquare {
+  border: 2px solid red;
+  background-color: transparent;
+  width: 70vw;
+  height: 70vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerContent {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.headerImg {
+  width: 70px;
+  height: auto;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navLinks li a {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.navLinks li a:hover {
+  color: rgb(174, 9, 9);
+}
+
+.navLinks li a {
+  text-decoration: none;
+}
+.fitnessImg {
+  max-height: 85%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.loginSection {
+  position: absolute;
+  bottom: 10%;
+  left: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginText {
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin: 5px 0;
+  color: white;
+}
+
+.loginBtn {
+  background-color: #b22222;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.loginBtn:hover {
+  background-color: darkred;
+}
+
+.sectionContent {
+  position: absolute;
+  top: 40%;
+  right: 0;
+  text-align: right;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.sectionContent h1 {
+  font-size: 2.7em;
+  font-family: "Squada One", sans-serif;
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.sectionContent p {
+  font-size: 1em;
+  font-family: "Caveat", cursive;
+
+  color: rgb(172, 172, 172);
+  max-width: 300px;
+}
+
+.ctaBtn {
+  background-color: #b22222;
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 70px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.readyText {
+  color: grey;
+}
+.stayStrong {
+  color: rgb(80, 80, 80);
+}
+.welcomeBack {
+  font-size: 10px;
+}
+.ctaBtn:hover {
+  background-color: darkred;
+}
+
+@media (max-width: 1024px) {
+  .sectionContent {
+    right: 10%;
+  }
+  .sectionContent h1 {
+    font-size: 1.5em;
+  }
+  .sectionContent p {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionContent {
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    right: 0;
+  }
+  .sectionContent h1 {
+    font-size: 1.5em;
+  }
+  .sectionContent p {
+    display: none;
+  }
+  .fitnessImg {
+    width: 200%;
+
+    position: absolute;
+    bottom: 0;
+  }
+  .loginSection {
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.589);
+    padding: 10px;
+  }
+  .stayStrong {
+    color: rgb(152, 152, 152);
+  }
+}
+
+@media (max-width: 480px) {
+  .fitnessImg {
+    display: none;
+  }
+  .loginSection {
+    bottom: 20%;
+    background-color: transparent;
+  }
+
+  .headerContent {
+    top: 10px;
+  }
+
+  .headerImg {
+    width: 40px;
+    height: auto;
+  }
+
+  .navLinks {
+    list-style: none;
+    display: flex;
+  }
+
+  .navLinks li a {
+    font-size: 0.5em;
+  }
+  .sectionContent h1 {
+    font-size: 1em;
+  }
+}

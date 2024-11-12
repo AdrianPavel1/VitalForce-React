@@ -1,0 +1,132 @@
+.header {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.backgroundVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.gradientOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  z-index: 1;
+}
+
+.main {
+  background-color: black;
+  min-height: 100vh;
+  position: relative;
+  z-index: 0;
+}
+
+.title {
+  color: white;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.container {
+  background: linear-gradient(
+    to bottom,
+
+    rgba(0, 0, 0, 0) 0%,
+    rgb(62, 62, 62) 100%
+  );
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  max-width: 500px;
+  margin: 50px auto;
+  position: relative;
+}
+
+.extraLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+.heading {
+  color: #ffffff;
+  text-align: center;
+  font-size: 2.5rem;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.formGroup input,
+.formGroup select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b90e2a;
+  border-radius: 5px;
+  background-color: #333;
+  color: white;
+}
+
+.submitButton {
+  padding: 10px;
+  background-color: #b90e2a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #d11e42;
+}
+
+.optionalText {
+  color: #bdbdbd;
+  font-size: 0.8rem;
+}

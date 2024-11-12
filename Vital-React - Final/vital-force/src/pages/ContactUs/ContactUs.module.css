@@ -1,0 +1,67 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.contactInfo {
+  margin-bottom: 40px;
+}
+
+.contactInfo h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.messageForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  align-items: stretch;
+  margin: 0 auto;
+}
+
+.inputField,
+.textAreaField {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #222;
+  color: #fff;
+}
+
+.textAreaField {
+  height: 100px;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #d40000;
+}

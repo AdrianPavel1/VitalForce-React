@@ -1,0 +1,188 @@
+.header {
+  background: linear-gradient(to right, rgba(0, 170, 255, 0.689), white);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  transition: top 0.3s;
+  z-index: 9999;
+  text-align: center;
+}
+
+.hidden {
+  top: -100px;
+}
+
+.logo h1 {
+  font-size: 1.5em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+}
+
+.navList li {
+  margin: 0 15px;
+}
+
+.navList li a {
+  text-decoration: none;
+  color: #000;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.navList li a:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  border-radius: 10px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+.navList li a:hover:after {
+  width: 100%;
+}
+
+.progressButton {
+  background-color: #ffa500;
+  padding: 10px 25px;
+  border-radius: 5px;
+}
+
+.progressButton:hover {
+  background-color: #c37f00;
+}
+
+.phoneModeHeader {
+  height: 100vh;
+  background: linear-gradient(to right, rgba(0, 170, 255, 0.689), white);
+  z-index: 999;
+  position: relative;
+}
+
+.miniMenu {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #000;
+  transition: all 1s ease;
+}
+.miniMenuOn {
+  transform: rotate(90deg);
+}
+.noScroll {
+  overflow-y: hidden !important;
+}
+
+.phoneModeHeader .newMenu {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  text-align: center;
+}
+.phoneModeHeader .newMenu .menuList2 li {
+  list-style: none;
+  padding: 10px;
+}
+.phoneModeHeader .newMenu .menuList2 li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1.5em;
+}
+@media (max-width: 1024px) {
+  .navList li {
+    margin: 0 10px;
+  }
+
+  .navList li a {
+    text-decoration: none;
+    color: #000;
+    position: relative;
+    transition: all 0.3s ease;
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo h1 {
+    font-size: 1em;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .navList li {
+    margin: 0 10px;
+  }
+
+  .navList li a {
+    text-decoration: none;
+    color: #000;
+    position: relative;
+    transition: all 0.3s ease;
+    font-size: 0.6em;
+  }
+  .progressButton {
+    background-color: #ffa500;
+    padding: 5px;
+  }
+  .navList li a:hover:after {
+    width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    position: relative;
+    height: 10vh;
+  }
+  .navList {
+    position: absolute;
+    right: calc(5% + 24px);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .navList li {
+    display: none;
+  }
+
+  .navList li a {
+    text-decoration: none;
+    color: #000;
+    position: relative;
+    transition: all 0.3s ease;
+    font-size: 1em;
+  }
+  .progressButton {
+    background-color: #ffa500;
+    padding: 5px;
+  }
+  .navList li:last-child {
+    display: inline-block;
+    margin-right: 0;
+  }
+
+  .phoneModeHeaderOn {
+    display: block;
+  }
+  .miniMenu {
+    display: inline-block;
+  }
+  .navList li a:hover:after {
+    width: 0;
+  }
+}
