@@ -28,6 +28,7 @@ function App() {
         <Route path="Supplements" element={<Supplements />} />
         <Route path="new" element={<Supplements />} />
         <Route path="NewAboutUs" element={<NewAboutUs />} />
+        <Route path="AboutMe" element={<AboutMe />} />
         <Route path="Personal" element={<Personal />} />
       </Routes>
     </BrowserRouter>
