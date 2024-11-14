@@ -120,7 +120,7 @@ const Supplements = () => {
               >
                 Buy Protein
               </a>
-              <button onClick={() => afisare()}>Afisare</button>
+              {/* <button onClick={() => afisare()}>Afisare</button> */}
               <a
                 href="https://www.youtube.com/watch?v=wvTv8TqWC48&ab_channel=RCSBProteinDataBank"
                 className={styles.checkVideoBtn}
