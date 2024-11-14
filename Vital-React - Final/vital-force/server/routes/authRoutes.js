@@ -1,12 +1,7 @@
 import express from "express";
 import { connectToDataBase } from "../lib/db.js";
 import bcrypt from "bcrypt";
-// Eliminăm jwt deoarece nu vom folosi token-uri pentru moment
-
 const router = express.Router();
-
-// Ruta de înregistrare a utilizatorului
-// Ruta de înregistrare a utilizatorului
 router.post("/register", async (req, res) => {
   const {
     username,
@@ -41,7 +36,6 @@ router.post("/register", async (req, res) => {
       [username, email, hashPassword]
     );
 
-    // Inserare date profil pe baza `username`
     await db.query(
       "INSERT INTO user_profiles (username, age, bodyType, goal, weight, height, physicalActivity, gender, neck_cm, waist_cm, hips) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
@@ -67,7 +61,6 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// Ruta de login a utilizatorului
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -95,7 +88,7 @@ router.post("/login", async (req, res) => {
       user: {
         username: rows[0].username,
         email: rows[0].email,
-        profile: profile[0], // Datele din `user_profiles`
+        profile: profile[0],
       },
     });
   } catch (err) {
@@ -179,7 +172,7 @@ router.post("/profile", async (req, res) => {
 });
 
 router.post("/search-foods", async (req, res) => {
-  const { searchTerm } = req.body; // Extragem termenul de căutare trimis din frontend
+  const { searchTerm } = req.body;
 
   try {
     const db = await connectToDataBase();
@@ -206,7 +199,6 @@ router.get("/get-macros", async (req, res) => {
   try {
     const db = await connectToDataBase();
 
-    // Setăm data curentă dacă nu este furnizată o dată specifică
     const targetDate = date || new Date().toISOString().split("T")[0];
 
     const [rows] = await db.query(
@@ -215,14 +207,12 @@ router.get("/get-macros", async (req, res) => {
     );
 
     if (rows.length === 0) {
-      // Returnăm statusul 200 cu un array gol dacă nu sunt date pentru data respectivă
       return res.status(200).json({
-        macros: [], // Array gol pentru date lipsă
+        macros: [],
         message: "No macros found for this date.",
       });
     }
 
-    // Dacă există date, returnăm primul rând
     return res.status(200).json({
       macros: rows[0],
     });
@@ -239,14 +229,12 @@ router.post("/add-macros", async (req, res) => {
   try {
     const db = await connectToDataBase();
 
-    // Verificăm dacă există o înregistrare cu username și datele corespunzătoare
     const [existingEntry] = await db.query(
       "SELECT * FROM user_meals WHERE username = ? AND date = ?",
       [username, date]
     );
 
     if (existingEntry.length > 0) {
-      // Dacă există o înregistrare, facem un UPDATE
       const [updateResult] = await db.query(
         "UPDATE user_meals SET calories = ?, proteins = ?, carbs = ?, fats = ? WHERE username = ? AND date = ?",
         [calories, proteins, carbs, fats, username, date]
@@ -260,7 +248,6 @@ router.post("/add-macros", async (req, res) => {
         return res.status(400).json({ message: "Failed to update macros" });
       }
     } else {
-      // Dacă nu există înregistrare, facem un INSERT
       const [insertResult] = await db.query(
         "INSERT INTO user_meals (username, date, calories, proteins, carbs, fats) VALUES (?, ?, ?, ?, ?, ?)",
         [username, date, calories, proteins, carbs, fats]
@@ -280,7 +267,6 @@ router.post("/add-macros", async (req, res) => {
   }
 });
 
-//backend meals:
 router.post("/add-cardMeals", async (req, res) => {
   const { username, date, meals } = req.body;
 
@@ -292,7 +278,6 @@ router.post("/add-cardMeals", async (req, res) => {
     const db = await connectToDataBase();
 
     for (const meal of meals) {
-      // Extragem datele și le convertim la numere
       const meal_name = meal.name;
       const calories = Number(meal.calories);
       const protein = Number(meal.protein);
@@ -306,7 +291,6 @@ router.post("/add-cardMeals", async (req, res) => {
       );
 
       if (existingEntry.length > 0) {
-        // Dacă există, facem UPDATE
         await db.query(
           "UPDATE card_meal SET calories = ?, protein = ?, carbs = ?, fat = ?, total_foods = ? WHERE username = ? AND date = ? AND meal_name = ?",
           [
@@ -321,7 +305,6 @@ router.post("/add-cardMeals", async (req, res) => {
           ]
         );
       } else {
-        // Dacă nu există, facem INSERT
         await db.query(
           "INSERT INTO card_meal (username, date, meal_name, calories, protein, carbs, fat, total_foods) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
           [
@@ -347,7 +330,6 @@ router.post("/add-cardMeals", async (req, res) => {
   }
 });
 
-// Ruta pentru ștergerea unei mese
 router.delete("/delete-meal", async (req, res) => {
   const { username, date, meal_name } = req.body;
 
@@ -378,11 +360,9 @@ router.delete("/delete-meal", async (req, res) => {
   }
 });
 
-// Ruta pentru obținerea meselor
 router.get("/getCard-meals", async (req, res) => {
   const { username, date } = req.query;
 
-  // Dacă nu este furnizată o dată, folosim data curentă
   const currentDate = date || new Date().toISOString().split("T")[0];
 
   if (!username) {
@@ -392,13 +372,11 @@ router.get("/getCard-meals", async (req, res) => {
   try {
     const db = await connectToDataBase();
 
-    // Obținem mesele din baza de date pentru username și data specificată
     const [meals] = await db.query(
       "SELECT meal_name, calories, protein, carbs, fat, total_foods FROM card_meal WHERE username = ? AND date = ?",
       [username, currentDate]
     );
 
-    // Returnăm mesele găsite
     res.status(200).json(meals);
   } catch (err) {
     console.error("Backend error:", err);
@@ -409,13 +387,11 @@ router.get("/getCard-meals", async (req, res) => {
 });
 
 router.post("/is-green", async (req, res) => {
-  // adăugat un "/" înainte de "is-green"
   const { username, date, green } = req.query;
 
   try {
     const db = await connectToDataBase();
 
-    // Verificăm dacă `green` este trimis și convertim la număr
     const greenValue = parseInt(green, 10);
     if (isNaN(greenValue)) {
       console.log("No valid green element sent");
@@ -429,7 +405,6 @@ router.post("/is-green", async (req, res) => {
       [username, date]
     );
 
-    // Actualizăm `green` doar dacă există o intrare
     if (existingEntry) {
       await db.query(
         "UPDATE card_meal SET green = ? WHERE username = ? AND date = ?",
@@ -485,23 +460,21 @@ router.get("/getUser-goal", async (req, res) => {
 
 router.get("/get-mealsExamples", async (req, res) => {
   const { dailyMeal, goal } = req.query;
-  console.log("Received parameters:", { dailyMeal, goal }); // Adaugă acest console.log
-
+  console.log("Received parameters:", { dailyMeal, goal });
   try {
     const db = await connectToDataBase();
 
     const query = `select * from ${db.escapeId(dailyMeal)} where goal = ?`;
     const [rows] = await db.query(query, [goal]);
 
-    console.log("Database rows:", rows); // Verifică ce rânduri sunt returnate
-
+    console.log("Database rows:", rows);
     if (rows.length > 0) {
       return res.status(200).json(rows);
     } else {
       return res.status(404).json({ message: "No meals found" });
     }
   } catch (err) {
-    console.error("Error fetching meals examples:", err); // Adaugă un console.log pentru erori
+    console.error("Error fetching meals examples:", err);
     return res.status(500).json({ message: "server error", err });
   }
 });

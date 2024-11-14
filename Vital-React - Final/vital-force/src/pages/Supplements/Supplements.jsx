@@ -61,6 +61,7 @@ import Footer from "../Footer/Footer";
 const Supplements = () => {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [user, setUser] = useState(null);
 
   const supplementBar = () => {
     if (window.scrollY > lastScrollY) {
@@ -84,10 +85,18 @@ const Supplements = () => {
     setActiveSection(section);
   };
 
+  useEffect(() => {
+    const currentUser = localStorage.getItem("username");
+    setUser(currentUser);
+  }, []);
+
+  const afisare = () => {
+    console.log(user);
+  };
   return (
     <div>
       {<Header />}
-      {}
+
       {activeSection === "protein" && (
         <section
           className={styles.oneSection}
@@ -95,6 +104,7 @@ const Supplements = () => {
         >
           <div className={styles.mainSect}>
             <p className={styles.p1}>All about Proteins</p>
+
             <h1 className={styles.mainH1}>Protein Supplements</h1>
             <div className={styles.proteinLine}></div>
             <p className={styles.secondP}>
@@ -110,7 +120,7 @@ const Supplements = () => {
               >
                 Buy Protein
               </a>
-
+              <button onClick={() => afisare()}>Afisare</button>
               <a
                 href="https://www.youtube.com/watch?v=wvTv8TqWC48&ab_channel=RCSBProteinDataBank"
                 className={styles.checkVideoBtn}
@@ -731,6 +741,7 @@ const Supplements = () => {
           <img src={testosteroneImage} alt="Icon 10" className={styles.icon} />
         </button>
       </div>
+
       <Footer />
     </div>
   );

@@ -179,9 +179,12 @@
   }
 
   .elementPros {
-    width: 70%;
+    width: 82%;
   }
-
+  .elemPro {
+    width: 100%;
+    margin-left: 5px;
+  }
   .shopBtn,
   .checkVideoBtn {
     padding: 5px;
