@@ -1,4 +1,6 @@
 import styles from "./Supplements.module.css";
+import axios from "axios";
+import { useSwipeable } from "react-swipeable";
 import React, { useState, useEffect } from "react";
 import wheyImage from "../../png/whey.png";
 import energyImage from "../../png/energy.png";
@@ -54,6 +56,11 @@ import omega3Image2 from "../../png/omega3.3.png";
 import testoste1Image from "../../png/testoste1.png";
 import testoste2Image from "../../png/testoste2.png";
 import testoste3Image from "../../png/testoste3.png";
+import firstCorner from "../../png/SupplementCorner1.png";
+import secondCorner from "../../png/SupplementCorner2.png";
+import shop1 from "../../png/pnPNG001.png";
+import shop2 from "../../png/pnPNG002.png";
+import shop3 from "../../png/pnPNG003.png";
 import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -62,7 +69,9 @@ const Supplements = () => {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [user, setUser] = useState(null);
-
+  const [getUserGoal, setUserGoal] = useState(null);
+  const [recomandation, setRecomandation] = useState([]);
+  const [displayItem, setDisplayItem] = useState("");
   const supplementBar = () => {
     if (window.scrollY > lastScrollY) {
       setShow(false);
@@ -85,14 +94,82 @@ const Supplements = () => {
     setActiveSection(section);
   };
 
+  const fetchUserGoal = async (username) => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/auth/getUser-goal",
+        {
+          params: { username },
+        }
+      );
+
+      setUserGoal(response.data);
+    } catch (err) {
+      console.log("eroare la primirea user goal:", err);
+    }
+  };
+
   useEffect(() => {
     const currentUser = localStorage.getItem("username");
     setUser(currentUser);
+    if (currentUser) {
+      fetchUserGoal(currentUser);
+    }
   }, []);
 
-  const afisare = () => {
-    console.log(user);
+  const createRecomandations = () => {
+    const goal = getUserGoal;
+    if (goal && goal === "muscle gain") {
+      setRecomandation([
+        "Protein",
+        "Creatine",
+        "BCAA",
+        "Vitamins",
+        "Glutamine",
+      ]);
+    } else {
+      setRecomandation([
+        "L-Carnitine",
+        "Citruline",
+        "Acid ALA",
+        "Carnitine",
+        "Sinefrine",
+      ]);
+    }
   };
+
+  useEffect(() => {
+    createRecomandations();
+  }, [getUserGoal]);
+
+  const afisare = () => {
+    console.log(recomandation);
+    const result = displayRecomanded(1);
+    console.log(result);
+    setDisplayItem(result);
+  };
+
+  const afisare2 = () => {
+    console.log(displayItem);
+  };
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const handlePrevious = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? recomandation.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === recomandation.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const swipeGest = useSwipeable({
+    onSwipedLeft: () => handleNext(),
+    onSwipedRight: () => handlePrevious(),
+  });
+
   return (
     <div>
       {<Header />}
@@ -120,7 +197,8 @@ const Supplements = () => {
               >
                 Buy Protein
               </a>
-              {/* <button onClick={() => afisare()}>Afisare</button> */}
+              <button onClick={() => afisare()}>Afisare</button>
+              <button onClick={() => afisare2()}>Afisare2</button>
               <a
                 href="https://www.youtube.com/watch?v=wvTv8TqWC48&ab_channel=RCSBProteinDataBank"
                 className={styles.checkVideoBtn}
@@ -557,7 +635,6 @@ const Supplements = () => {
         </section>
       )}
 
-      {}
       {activeSection === "omega3" && (
         <section
           className={styles.oneSection}
@@ -742,6 +819,86 @@ const Supplements = () => {
         </button>
       </div>
 
+      <section className={styles.personalizedSection}>
+        <div className={styles.glowContainer}>
+          <img src={firstCorner} alt="" className={styles.firstCorner} />
+          <img src={secondCorner} alt="" className={styles.secondCorner} />
+          <h1 className={styles.mySuppH1}>
+            <span>{user}</span>
+            <span>You can use these supplements for you'r goal</span>
+          </h1>
+          <div className={styles.recomandations}>
+            <div {...swipeGest} className={styles.mainPersonal}>
+              <div className={styles.card}>
+                <div className={styles.logo}>
+                  <span className={`${styles.circle} ${styles.circle1}`}></span>
+
+                  <span className={`${styles.circle} ${styles.circle2}`}></span>
+
+                  <span className={`${styles.circle} ${styles.circle3}`}></span>
+
+                  <span className={`${styles.circle} ${styles.circle4}`}></span>
+
+                  <span className={`${styles.circle} ${styles.circle5}`}>
+                    <i className="fa-brands fa-vimeo"></i>
+                  </span>
+                </div>
+
+                <div className={styles.glass}>
+                  <div className={styles.content}>
+                    <h1>{recomandation[currentIndex]}</h1>
+                  </div>
+                  <div className={styles.bottom}>
+                    <div className={styles.shops}>
+                      <a
+                        className={`${styles.shop} ${styles.shop1}`}
+                        href="https://www.pronutrition.ro/"
+                      >
+                        <img src={shop1} alt="" />
+                      </a>
+                      <a
+                        className={`${styles.shop} ${styles.shop2}`}
+                        href="https://shopbuilder.ro/"
+                      >
+                        <img src={shop2} alt="" />
+                      </a>
+                      <a
+                        className={`${styles.shop} ${styles.shop3}`}
+                        href="https://gymbeam.ro/"
+                      >
+                        <img src={shop3} alt="" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* <div className={styles.recomandation}>2</div>
+            <div className={styles.recomandation}>3</div> */}
+            </div>
+            <div className={styles.controls}>
+              <button onClick={handlePrevious} className={styles.bttnLeft}>
+                <i className="fa-solid fa-arrow-left"></i>
+              </button>
+              <button onClick={handleNext} className={styles.bttnRight}>
+                <i className="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+            <div className={styles.dots}>
+              {recomandation.map((_, index) => (
+                <span
+                  key={index}
+                  className={`${styles.dot} ${
+                    currentIndex === index ? styles.active : ""
+                  }`}
+                  onClick={() => setCurrentIndex(index)}
+                ></span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className={styles.incerc}></div>
       <Footer />
     </div>
   );

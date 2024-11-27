@@ -1,5 +1,6 @@
 // src/Footer/Footer.jsx
 import styles from "./Footer.module.css";
+import EmailUs from "./EmailsUs.jsx";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -13,6 +14,8 @@ const Footer = () => {
           personalized workout plans and expert coaching, we’re here to guide
           you towards a healthier, happier lifestyle.
         </p>
+
+        <EmailUs />
       </section>
 
       <div className={styles.footerContent}>
@@ -34,7 +37,7 @@ const Footer = () => {
           <p>Read our latest terms and conditions</p>
           <ul>
             <li>
-              <Link to="/TrackProgress">Terms & Conditions</Link>
+              <Link to="/Thermes">Terms & Conditions</Link>
             </li>
           </ul>
         </div>

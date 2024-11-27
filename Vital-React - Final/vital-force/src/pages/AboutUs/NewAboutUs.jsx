@@ -2,7 +2,7 @@ import { light } from "@mui/material/styles/createPalette";
 import styles from "./NewAboutUs.module.css";
 import { useEffect, useRef } from "react";
 import video from "../../images/customEating.mp4";
-import dragon from "../../images/dragon_1.jpg";
+
 import Header from "../Header/Header.jsx";
 import Personal from "../Personal/Personal.jsx";
 import Footer from "../Footer/Footer.jsx";

@@ -160,12 +160,344 @@
   transition: transform 0.3s ease;
 }
 
+.personalizedSection {
+  width: 80vw;
+  height: 120vh;
+  margin: 10% auto 0 auto;
+  position: relative;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.firstCorner {
+  position: absolute;
+  width: 60%;
+  height: 40%;
+  top: 0;
+  left: 0;
+  border-top-left-radius: 10px;
+}
+.secondCorner {
+  position: absolute;
+  width: 60%;
+  height: 40%;
+  top: 0;
+  right: 0;
+  border-top-right-radius: 10px;
+}
+.mySuppH1 {
+  position: absolute;
+  top: 5%;
+  /* z-index: 1; */
+  font-size: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+.mainPersonal {
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.mainPersonal .card {
+  height: 100%;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #00ffd6, #08e260);
+  transition: 0.5s ease-in-out;
+  transform-style: preserve-3d;
+  box-shadow: #12a02c00 40px 50px 25px, #02140033 0px 25px 25px;
+}
+
+.glass {
+  transform-style: preserve-3d;
+  position: absolute;
+  inset: 8px;
+  background: linear-gradient(#ffffff59, #ffffffd0);
+  border-radius: 55px;
+  border-top-right-radius: 100%;
+  border-left: 1px solid white;
+  transition: 0.5s ease-in-out;
+  transform: translate3d(0, 0, 25px);
+}
+
+.logo {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform-style: preserve-3d;
+}
+
+.circle {
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #00f9cd33;
+  box-shadow: #64646f33 -10px 10px 20px;
+  top: 0;
+  right: 0;
+  transition: 0.5s ease-in-out;
+  backdrop-filter: blur(5px);
+}
+
+.logo .circle1 {
+  width: 170px;
+  transform: translate3d(0, 0, 20px);
+  top: 8px;
+  right: 8px;
+  transition-delay: 0s;
+}
+
+.logo .circle2 {
+  width: 140px;
+  transform: translate3d(0, 0, 40px);
+  top: 10px;
+  right: 10px;
+  transition-delay: 0.4s;
+}
+
+.logo .circle3 {
+  width: 110px;
+  transform: translate3d(0, 0, 60px);
+  top: 17px;
+  right: 17px;
+  transition-delay: 0.8s;
+}
+
+.logo .circle4 {
+  width: 80px;
+  transform: translate3d(0, 0, 80px);
+  top: 23px;
+  right: 23px;
+  transition-delay: 1.2s;
+}
+
+.logo .circle5 {
+  width: 50px;
+  transform: translate3d(0, 0, 100px);
+  top: 29px;
+  right: 29px;
+  transition-delay: 1.6s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: green;
+}
+
+.content {
+  padding: 120px 60px 0 20px;
+  color: green;
+  font-weight: bold;
+  font-size: 1em;
+  transform-style: preserve-3d;
+}
+
+.content h1 {
+  text-shadow: #05471180 2px 2px 5px;
+  transition: 0.2s ease-in-out 0.4s;
+}
+
+.mainPersonal:hover .card .content h1 {
+  transform: translate3d(0, 0, 30px);
+  text-shadow: #05471133 -5px 20px 10px;
+}
+.bottom {
+  transform-style: preserve-3d;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.bottom .shops {
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.bottom .shops .shop {
+  padding: 0 2px 0 2px;
+  cursor: pointer;
+  box-shadow: #05471180 7px 7px 5px;
+  border-radius: 5px;
+  background-color: #05471180;
+}
+
+.shop1 {
+  transition: 0.2s ease-in-out 0.2s;
+}
+
+.shop2 {
+  transition: 0.2s ease-in-out 0.4s;
+}
+
+.shop3 {
+  transition: 0.2s ease-in-out 0.6s;
+}
+.shops img {
+  width: 30px;
+  height: 30px;
+  /* padding: 5px; */
+  /* background: #02ac659f; */
+}
+
+.mainPersonal:hover .card {
+  transform: rotate3d(1, 1, 0, 30deg);
+}
+
+.mainPersonal:hover .card .bottom .shop {
+  transform: translate3d(0, 0, 90px);
+  box-shadow: #05471133 -5px 20px 10px;
+}
+.glowContainer {
+  background-color: rgb(0, 0, 0);
+  width: 100%;
+  height: 100%;
+  border-radius: 10px 10px 30% 30%;
+  position: relative;
+  z-index: 1;
+}
+
+.glowContainer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  box-shadow: 0 0 0 3px rgb(7, 211, 177);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.recomandations {
+  width: 100%;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: 40%;
+  left: 0;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.controls button {
+  background: linear-gradient(45deg, #00ffd6, #08e260);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.controls button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.controls button:active {
+  transform: scale(0.95);
+  box-shadow: 0 3px 5px rgba(255, 255, 255, 0.6);
+}
+
+.bttnLeft {
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translate(-50%);
+}
+.bttnRight {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translate(-50%);
+}
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+@keyframes colorLoop {
+  0% {
+    background-color: #00ffd6;
+  }
+  10% {
+    background-color: #19f7c1;
+  }
+  20% {
+    background-color: #33f0ac;
+  }
+  30% {
+    background-color: #4ee997;
+  }
+  40% {
+    background-color: #66e082;
+  }
+  50% {
+    background-color: #7fd86d;
+  }
+  60% {
+    background-color: #66e082;
+  }
+  70% {
+    background-color: #4ee997;
+  }
+  80% {
+    background-color: #33f0ac;
+  }
+  90% {
+    background-color: #19f7c1;
+  }
+  100% {
+    background-color: #00ffd6;
+  }
+}
+
+.dot.active {
+  animation: colorLoop 3s infinite;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+}
+
 @media (max-width: 768px) {
   .mainH1 {
     font-size: 1.5em;
   }
+  .controls {
+    display: none;
+  }
   .iconButtons {
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -176,6 +508,7 @@
     z-index: 10;
     height: auto;
     width: 100px;
+    position: absolute;
   }
 
   .elementPros {
@@ -191,13 +524,21 @@
     font-size: 0.6em;
     width: 60px;
   }
+  .hidden {
+    bottom: 0px;
+  }
+  .oneSection {
+    position: relative;
+  }
 }
 
 @media (max-width: 480px) {
   .elementPros {
     display: none;
   }
-
+  .controls {
+    display: none;
+  }
   .oneSection {
     position: relative;
   }

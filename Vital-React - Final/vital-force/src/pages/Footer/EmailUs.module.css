@@ -1,0 +1,53 @@
+.mailForm {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background: linear-gradient(to right, #00a3ee, #f1f1f1);
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mailFormH3 {
+  margin-top: 30%;
+}
+
+.mailForm label {
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.mailForm input,
+.mailForm textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.5s, box-shadow 0.5s;
+}
+
+.mailForm input:focus,
+.mailForm textarea:focus {
+  border-color: #006391;
+  box-shadow: 0 0 4px rgba(0, 202, 238, 0.4);
+}
+
+.mailFormBttn {
+  padding: 12px;
+  background-color: #00a3ee;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.4em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}

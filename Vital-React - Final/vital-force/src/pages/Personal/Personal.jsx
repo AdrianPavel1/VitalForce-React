@@ -30,9 +30,6 @@ const Personal = () => {
           <div className={styles.item} style={{ "--position": 6 }}>
             <img src={trainer6} alt="" />
           </div>
-          {}
-          {}
-          {}
         </div>
         <div className={styles.content}>
           <h1 data-content="Vital Team">Vital Team</h1>
