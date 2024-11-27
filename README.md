@@ -1,4 +1,4 @@
-# my-projects
+# Vital Force
 There is my latest project and responsive project.
 It contains 2 folders, 1 with mySQL DB and one with React website.
 
