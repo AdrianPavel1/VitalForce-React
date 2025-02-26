@@ -22,7 +22,6 @@ function Meals(props) {
   });
 
   const dateSelect = (date) => {
-    console.log("data mea ESTE1111:", date);
     const nextDate = new Date(date);
 
     const formattedDate = nextDate.toISOString().split("T")[0];

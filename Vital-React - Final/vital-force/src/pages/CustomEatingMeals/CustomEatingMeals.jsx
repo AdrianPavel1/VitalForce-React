@@ -315,7 +315,6 @@ function CustomEatingMeals() {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 style={{
-                  // backgroundImage: `url(${breakfastPic})`,
                   backgroundImage: backgroundImagePath
                     ? `url(${backgroundImagePath})`
                     : "none",

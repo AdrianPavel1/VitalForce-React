@@ -4,6 +4,10 @@ import axios from "axios";
 const Calendar = ({ onDateSelect }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
+  const [username, setUsername] = useState(
+    localStorage.getItem("username") || ""
+  );
+
   const changeMonth = (direction) => {
     setCurrentDate((prevDate) => {
       const newDate = new Date(prevDate);
@@ -26,10 +30,9 @@ const Calendar = ({ onDateSelect }) => {
   }, []);
 
   const dateClick = (day) => {
-
     const newDate = new Date(currentDate);
-    newDate.setDate(day); 
-    setCurrentDate(newDate); 
+    newDate.setDate(day);
+    setCurrentDate(newDate);
   };
 
   const [greenMeals, setGreenMeals] = useState([]);
@@ -37,7 +40,12 @@ const Calendar = ({ onDateSelect }) => {
   const takeGreenMeals = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/auth/take-greens"
+        "http://localhost:3000/auth/take-greens",
+        {
+          params: {
+            username: localStorage.getItem("username"),
+          },
+        }
       );
       setGreenMeals(response.data);
     } catch (err) {
@@ -47,25 +55,28 @@ const Calendar = ({ onDateSelect }) => {
   };
 
   useEffect(() => {
-    takeGreenMeals();
-  }, []);
+    if (username) {
+      setGreenMeals([]);
+
+      takeGreenMeals();
+    }
+  }, [username]);
 
   useEffect(() => {
     if (currentDate) {
       console.log("cand adaug in localStorage:", currentDate);
       onDateSelect(currentDate);
-
     }
   }, [currentDate]);
 
   const afisare = () => {
-
-    console.log(currentDate);
+    console.log(greenMeals);
   };
   return (
     <>
       <div className={styles.calendar}>
         <h1>Strake Calendar</h1>
+        <button onClick={afisare}>AF</button>
         <div className={styles.header}>
           <button onClick={() => changeMonth(-1)}>◀</button>
           <h2>

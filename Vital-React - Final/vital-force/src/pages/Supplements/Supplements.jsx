@@ -13,7 +13,7 @@ import vitaminsImage from "../../png/vitamins.png";
 import omega3Image from "../../png/omega-3.png";
 import testosteroneImage from "../../png/testosterone.png";
 
-import supplementCover1 from "../../images/supplementCover1.png";
+import supplementCover1 from "../../images/supplementCover1.jpg";
 
 import preWorkoutImage1 from "../../images/preWorkout.jpg";
 import bcaaImage1 from "../../images/BCAA1.jpg";
@@ -197,8 +197,7 @@ const Supplements = () => {
               >
                 Buy Protein
               </a>
-              <button onClick={() => afisare()}>Afisare</button>
-              <button onClick={() => afisare2()}>Afisare2</button>
+
               <a
                 href="https://www.youtube.com/watch?v=wvTv8TqWC48&ab_channel=RCSBProteinDataBank"
                 className={styles.checkVideoBtn}

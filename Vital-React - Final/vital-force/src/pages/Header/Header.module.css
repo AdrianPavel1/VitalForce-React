@@ -1,5 +1,9 @@
 .header {
-  background: linear-gradient(to right, rgba(0, 170, 255, 0.689), white);
+  background: linear-gradient(
+    to right,
+    rgba(0, 170, 255, 0.4),
+    rgba(255, 255, 255, 0.4)
+  );
   position: fixed;
   top: 0;
   left: 0;
@@ -36,9 +40,10 @@
 
 .navList li a {
   text-decoration: none;
-  color: #000;
+  color: #ffffff;
   position: relative;
   transition: all 0.3s ease;
+  padding: 5px;
 }
 
 .navList li a:after {
@@ -59,17 +64,27 @@
 .progressButton {
   background-color: #ffa500;
   padding: 10px 25px;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .progressButton:hover {
   background-color: #c37f00;
 }
 
+.navList li a.progressButton::after {
+  content: none;
+}
+
 .phoneModeHeader {
   height: 100vh;
-  background: linear-gradient(to right, rgba(0, 170, 255, 0.689), white);
+  background: linear-gradient(
+    135deg,
+    rgba(20, 20, 20, 0.95),
+    rgba(50, 50, 50, 0.95)
+  );
+
   z-index: 999;
+  backdrop-filter: blur(10px);
   position: relative;
 }
 
@@ -95,14 +110,27 @@
   display: flex;
   text-align: center;
 }
+
+.phoneModeHeader .newMenu .menuList2 {
+  width: 300px;
+  margin: 0 auto;
+}
+
 .phoneModeHeader .newMenu .menuList2 li {
   list-style: none;
-  padding: 10px;
+  padding: 20px;
 }
+
 .phoneModeHeader .newMenu .menuList2 li a {
+  display: block;
+  width: 100%;
+  text-align: center;
   text-decoration: none;
   color: #000;
   font-size: 1.5em;
+  background-color: #ffa500;
+  padding: 10px;
+  border-radius: 10px;
 }
 @media (max-width: 1024px) {
   .navList li {
@@ -126,7 +154,11 @@
   }
 
   .navList li {
-    margin: 0 10px;
+    margin: 0;
+  }
+
+  ul {
+    padding: 0;
   }
 
   .navList li a {
@@ -134,11 +166,11 @@
     color: #000;
     position: relative;
     transition: all 0.3s ease;
-    font-size: 0.6em;
+    font-size: 0.7em;
   }
   .progressButton {
     background-color: #ffa500;
-    padding: 5px;
+    padding: 3px;
   }
   .navList li a:hover:after {
     width: 0;
@@ -146,43 +178,27 @@
 }
 
 @media (max-width: 480px) {
-  .header {
-    position: relative;
-    height: 10vh;
-  }
-  .navList {
-    position: absolute;
-    right: calc(5% + 24px);
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .navList li {
-    display: none;
-  }
-
-  .navList li a {
-    text-decoration: none;
-    color: #000;
-    position: relative;
-    transition: all 0.3s ease;
-    font-size: 1em;
-  }
-  .progressButton {
-    background-color: #ffa500;
-    padding: 5px;
-  }
   .navList li:last-child {
     display: inline-block;
     margin-right: 0;
   }
-
-  .phoneModeHeaderOn {
-    display: block;
+  .navList li {
+    display: none;
   }
   .miniMenu {
     display: inline-block;
   }
-  .navList li a:hover:after {
-    width: 0;
+  .progressButton {
+    border-radius: 5px;
+    font-size: 1.5em !important;
+  }
+  .navList {
+    padding: 0 10px 0 10px;
+    width: 100%;
+    height: 100%;
+  }
+  .navList li {
+    margin: 0;
+    padding: 0;
   }
 }

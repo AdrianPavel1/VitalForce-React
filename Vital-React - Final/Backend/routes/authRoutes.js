@@ -427,11 +427,13 @@ router.post("/is-green", async (req, res) => {
 
 router.get("/take-greens", async (req, res) => {
   try {
+    const { username } = req.query;
+    console.log("Param username received:", username);
     const db = await connectToDataBase();
 
     const [result] = await db.query(
-      "SELECT DATE_FORMAT(date, '%Y-%m-%d') AS date FROM card_meal WHERE green = ?",
-      [1]
+      "SELECT DATE_FORMAT(date, '%Y-%m-%d') AS date FROM card_meal WHERE green = 1 AND username = ?",
+      [username]
     );
 
     return res.status(200).json(result);

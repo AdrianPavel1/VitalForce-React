@@ -133,6 +133,10 @@
   align-items: center;
 }
 
+.detailBox p {
+  padding: 10px;
+}
+
 @media (max-width: 480px), (max-width: 768px) {
   .detailBox p {
     margin-top: 5px;

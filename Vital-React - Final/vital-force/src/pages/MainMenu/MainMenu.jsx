@@ -1,6 +1,7 @@
 import styles from "./MainMenu.module.css";
 import { Link } from "react-router-dom";
 import mainMenuPhoto from "../../images/mainMenuPhoto.png";
+import mainPhoto from "../../images/mainMenuImg.png";
 import workoutPreview from "../../images/png1.png";
 import Header from "../Header/Header";
 import Thermes from "../Thermes/Thermes";
@@ -8,38 +9,15 @@ import TrackProgress from "../TrackProgress/TrackProgress";
 import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 import axios from "axios";
-
+import Chatbot from "../ChatBot/Chatbot";
 const MainMenu = () => {
-  const Chatbot = () => {
-    useEffect(() => {
-      window.embeddedChatbotConfig = {
-        chatbotId: "FMWp2oUFFvDMtQN6IjdTr",
-        domain: "www.chatbase.co",
-      };
-
-      const script = document.createElement("script");
-      script.src = "https://www.chatbase.co/embed.min.js";
-      script.async = true;
-      script.defer = true;
-      script.setAttribute("chatbotId", "FMWp2oUFFvDMtQN6IjdTr");
-      script.setAttribute("domain", "www.chatbase.co");
-
-      document.body.appendChild(script);
-
-      return () => {
-        document.body.removeChild(script);
-      };
-    }, []);
-
-    return null;
-  };
   return (
     <div>
       <Header />
       <Chatbot />
       <section className={styles.pictureVisual}>
         <img
-          src={mainMenuPhoto}
+          src={mainPhoto}
           alt="Fitness background"
           className={styles.pictureVisualImage}
         />
