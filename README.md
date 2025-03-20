@@ -17,7 +17,7 @@ npm run dev
 
 this will give a localHost link.
 
-2.Change the .env with you'r downloaded DB data from the program file :
+2.Change the .env with your downloaded DB data from the program file :
 vital-force/server/.env
 
 3.
@@ -32,5 +32,3 @@ user: Adrian11@gmail.com
 password:11
 
 
-
-Note: I am currently developing my skills in website security.
