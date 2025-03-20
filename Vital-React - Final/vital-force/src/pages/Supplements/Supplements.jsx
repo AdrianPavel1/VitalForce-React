@@ -824,7 +824,7 @@ const Supplements = () => {
           <img src={secondCorner} alt="" className={styles.secondCorner} />
           <h1 className={styles.mySuppH1}>
             <span>{user}</span>
-            <span>You can use these supplements for you'r goal</span>
+            <span>You can use these supplements for your goal</span>
           </h1>
           <div className={styles.recomandations}>
             <div {...swipeGest} className={styles.mainPersonal}>

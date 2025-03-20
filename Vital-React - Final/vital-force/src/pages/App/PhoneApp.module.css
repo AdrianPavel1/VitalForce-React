@@ -1,61 +1,147 @@
-.mainDiv {
-  background-size: cover;
-  height: 100vh;
-  overflow: hidden;
+:root {
+  --white: #ffffff;
+}
+
+.mainAppContainer {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.arWorkouts,
+.arDownload {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 5%;
+  background-color: var(--white);
+}
+
+.textContainer {
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.textContainer h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #333;
+}
+
+.textContainer p,
+.textContainer ol,
+.textContainer li {
+  color: #555;
+  line-height: 1.5;
+  font-size: 2rem;
+}
+
+.imageContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.imageContainer img {
+  max-width: 100%;
+  height: auto;
+  border: none;
+  box-shadow: none;
+}
+
+.arImages {
+  flex-direction: column;
+  text-align: center;
+  padding: 15% 2%;
+}
+
+.arImages h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.arImages p {
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
 }
 
-.appDescription {
-  text-align: left;
-  background: transparent;
-  padding: 20px;
-  position: absolute;
-  z-index: 1;
-  width: 40%;
-  margin-left: 5%;
-  top: 50%;
-  transform: translateY(-50%);
-  text-align: center;
+.carouselWrapper {
+  width: 600px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.appTitle {
-  font-size: 3rem;
-  font-weight: bold;
-  color: white;
-  margin-bottom: 10px;
-  line-height: 1.2;
-}
-
-.appInfo {
-  font-size: 1.2rem;
-  color: white;
-  margin-bottom: 20px;
-  line-height: 1.6;
-}
-
-.downloadButton {
-  font-size: 0.5rem;
-  font-weight: bold;
-  color: white;
-  background-color: #02aacc;
+.carouselImage {
+  max-width: 100%;
   border: none;
-  padding: 15px 30px;
-  border-radius: 50px;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-top: 20px;
 }
 
-.downloadButton:hover {
-  background-color: #007087;
+.arrowButton {
+  background-color: #ccc;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  margin: 0 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.arrowButton:hover {
+  background-color: #999;
+}
+
+.downloadBtn {
+  background-color: rgba(0, 170, 255, 0.695);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin: 1rem;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  letter-spacing: 1px;
+}
+.downloadBtn:hover {
+  background-color: rgba(0, 140, 220, 0.8);
+  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
-  .appDescription {
-    top: 20%;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    width: auto;
+  .arWorkouts,
+  .arDownload {
+    flex-direction: column;
+    padding: 3.5rem;
+  }
+
+  .textContainer,
+  .imageContainer {
+    margin: 0 0 2rem 0;
+    flex: unset;
+    width: 100%;
+  }
+
+  .carouselWrapper {
+    width: 90%;
   }
 }

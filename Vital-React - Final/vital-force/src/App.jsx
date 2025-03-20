@@ -12,6 +12,7 @@ import Server from "./pages/reactServerTesting/Server.jsx";
 import AboutMe from "./pages/aboutMe/AboutMe.jsx";
 import NewAboutUs from "./pages/AboutUs/NewAboutUs.jsx";
 import Personal from "./pages/Personal/Personal.jsx";
+import Admin from "./pages/admin/Admin.jsx";
 function App() {
   return (
     <BrowserRouter>
@@ -30,6 +31,7 @@ function App() {
         <Route path="NewAboutUs" element={<NewAboutUs />} />
         <Route path="AboutMe" element={<AboutMe />} />
         <Route path="Personal" element={<Personal />} />
+        <Route path="Admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );

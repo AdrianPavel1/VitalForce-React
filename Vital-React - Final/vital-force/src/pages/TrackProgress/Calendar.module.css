@@ -52,10 +52,6 @@
   transition: background-color 0.3s ease;
 }
 
-.header button:hover {
-  background-color: #007ec7;
-}
-
 .header h2 {
   margin: 0;
   font-size: 1.5em;

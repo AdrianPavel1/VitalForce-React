@@ -30,11 +30,7 @@ function CustomEatingMeals() {
         }
       );
 
-      if (response.status === 200 && response.data) {
-        setUserGoal(response.data);
-      } else {
-        console.log("Unexpected response:", response);
-      }
+      if (response.status === 200 && response.data) setUserGoal(response.data);
     } catch (err) {
       console.error("Error: can't get user goal", err);
     }
@@ -67,8 +63,6 @@ function CustomEatingMeals() {
   useEffect(() => {
     const getMealsExamples = async () => {
       if (selectedDailyMeal && userGoal) {
-        console.log("Selected Daily Meal:", selectedDailyMeal);
-        console.log("User Goal:", userGoal);
         try {
           const response = await axios.get(
             `http://localhost:3000/auth/get-mealsExamples`,
@@ -79,7 +73,7 @@ function CustomEatingMeals() {
               },
             }
           );
-          console.log("Response data:", response.data);
+
           setDailyMealResults(response.data);
         } catch (error) {
           console.error("Error fetching meals examples:", error);
@@ -151,18 +145,16 @@ function CustomEatingMeals() {
       dailyMealResults.length > currentMealIndex &&
       dailyMealResults[currentMealIndex]
     ) {
-      const imgPath = `/${selectedDailyMeal}/${dailyMealResults[currentMealIndex].img}`;
-      console.log(
-        `/${selectedDailyMeal}/${dailyMealResults[currentMealIndex].img}`
-      );
+      let imgPath = "";
+
+      if (dailyMealResults[currentMealIndex].img) {
+        imgPath = `/${selectedDailyMeal}/${dailyMealResults[currentMealIndex].img}`;
+      } else if (dailyMealResults[currentMealIndex].image) {
+        imgPath = `data:image/jpeg;base64,${dailyMealResults[currentMealIndex].image}`;
+      }
       setBackgroundImagePath(imgPath);
     }
   }, [selectedDailyMeal, dailyMealResults, currentMealIndex]);
-
-  const afisare = async () => {
-    console.log(selectedDailyMeal);
-    console.log(dailyMealResults[currentMealIndex].img);
-  };
 
   return (
     <>
@@ -209,8 +201,12 @@ function CustomEatingMeals() {
           <div className={styles.orderSection}>
             <div className={styles.itemInfo}>
               <p>Choose one option</p>
-              <select className={styles.mealSelect} onChange={handleMealChange}>
-                <option value="" disabled selected>
+              <select
+                className={styles.mealSelect}
+                onChange={handleMealChange}
+                defaultValue=""
+              >
+                <option value="" disabled>
                   Choose
                 </option>
                 <option value="breakfast">Breakfast</option>
@@ -284,19 +280,19 @@ function CustomEatingMeals() {
                       {dailyMealResults &&
                         dailyMealResults[currentMealIndex] && (
                           <tr>
-                            <td dataLabel="Column ">
+                            <td data-label="Column ">
                               {dailyMealResults[currentMealIndex].Name}
                             </td>
-                            <td dataLabel="Quantity ">
+                            <td data-label="Quantity ">
                               {dailyMealResults[currentMealIndex].Quantity}
                             </td>
-                            <td dataLabel="Proteins">
+                            <td data-label="Proteins">
                               {dailyMealResults[currentMealIndex].Proteins}
                             </td>
-                            <td dataLabel="Carbohydrates">
+                            <td data-label="Carbohydrates">
                               {dailyMealResults[currentMealIndex].Carbohydrates}
                             </td>
-                            <td dataLabel="Fat">
+                            <td data-label="Fat">
                               {dailyMealResults[currentMealIndex].Fat}
                             </td>
                           </tr>

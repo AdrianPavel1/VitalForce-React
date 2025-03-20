@@ -1,0 +1,438 @@
+:root {
+  --dark1: #0a0a0a;
+  --dark2: #161616;
+  --dark3: #1d1c1c;
+  --dark4: #232323;
+  --dark5: #2c2c2c;
+  --dark6: #363636;
+  --dark7: #454444;
+  --textColor: #ffffff;
+}
+
+.adminContainer {
+  display: flex;
+  height: 100vh;
+  background-color: var(--dark1);
+  color: var(--textColor);
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* left SIDEBAR */
+.left {
+  width: 250px;
+  background-color: var(--dark3);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  /* position: fixed; */
+}
+
+.containerHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.containerHeader img {
+  width: 40px;
+  height: 40px;
+  margin-right: 0.5rem;
+}
+
+.containerHeader h2 {
+  font-size: 1.2rem;
+  color: var(--textColor);
+}
+
+.sideBar {
+  flex: 1;
+}
+
+.sideBar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sideBar li {
+  background-color: var(--dark4);
+  color: var(--textColor);
+  margin-bottom: 0.5rem;
+  padding: 0.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.sideBar li:hover {
+  background-color: var(--dark5);
+}
+
+.sideBar li button {
+  width: 100%;
+  background-color: var(--dark4);
+  color: var(--textColor);
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.sideBar li button:hover {
+  background-color: var(--dark5);
+}
+
+.sectionTitle {
+  background-color: transparent !important;
+  color: var(--dark7) !important;
+  cursor: default !important;
+  margin-top: 1rem;
+  font-size: 0.5em;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+/* right content */
+.right {
+  flex: 1;
+  background-color: var(--dark1);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.right h3 {
+  margin-top: 0;
+}
+
+/* Stat Cards */
+.cards {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  flex: 1;
+  background-color: var(--dark6);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  color: var(--textColor);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  margin: 0.5rem 0;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.chartContainer {
+  margin: 0 auto;
+}
+
+.adminTables {
+  height: auto;
+  overflow-y: auto;
+}
+
+/* breakfast */
+
+.foodsContainer,
+.allFoodsContainer {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 35% 65%;
+  grid-template-rows: 200px 1fr;
+  grid-template-areas:
+    "table table"
+    "modify add";
+  background-color: var(--dark1);
+  overflow: hidden;
+}
+
+/* TABLE (TOP) */
+
+.adminTables.beakfastTable {
+  grid-area: table;
+  overflow-y: auto;
+  padding: 1rem;
+  background-color: var(--dark2);
+  border-bottom: 1px solid var(--dark4);
+  position: relative;
+}
+
+/* Table styling */
+.beakfastTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.beakfastTable table thead {
+  background-color: var(--dark3);
+}
+
+.beakfastTable table th,
+.beakfastTable table td {
+  border: 1px solid var(--dark4);
+  padding: 0.75rem;
+  text-align: left;
+  color: var(--textColor);
+}
+
+/* MODIFY CONTAINER (LEFT) */
+.modifyContainer,
+.modifyFoodsContainer {
+  grid-area: modify;
+  background-color: var(--dark2);
+  border-right: 1px solid var(--dark4);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modifyContainer h3 {
+  margin-bottom: 0.5rem;
+}
+
+.modifyContainer input {
+  padding: 0.5rem;
+  background-color: var(--dark4);
+  border: none;
+  border-radius: 4px;
+  color: var(--textColor);
+}
+
+/*right */
+.addContainer {
+  grid-area: add;
+  background-color: var(--dark2);
+  border-left: 1px solid var(--dark4);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* step panels (inside addContainer) */
+.stepPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background-color: var(--dark3);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.stepPanel h2 {
+  margin-bottom: 0.5rem;
+}
+
+.stepPanel label {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.stepPanel input,
+.stepPanel select,
+.modifySelect {
+  padding: 0.5rem;
+  background-color: var(--dark4);
+  border: none;
+  border-radius: 4px;
+  color: var(--textColor);
+}
+
+/* STEP navigation */
+.stepNav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.stepNav button,
+.button,
+.modifyMealBTN,
+.deleteBtn,
+.saveFoodBtn {
+  background-color: var(--dark4);
+  color: var(--textColor);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.stepNav button:hover,
+.button:hover,
+.modifyMealBTN:hover,
+.deleteBtn:hover,
+.saveFoodBtn:hover {
+  background-color: var(--dark5);
+}
+
+.stepNav button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.zoomed {
+  width: 80vw;
+  height: 80vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: block !important;
+}
+
+/* Handle Foods Page */
+.handleFoodsContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--dark1);
+  color: var(--textColor);
+  height: 100%;
+}
+
+.allFoodsTable {
+  flex: 0 0 auto;
+  position: relative;
+  background-color: var(--dark2);
+  border-bottom: 1px solid var(--dark4);
+  padding: 1rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.allFoodsTable table {
+  width: 100%;
+  height: auto;
+}
+
+.allFoodsTable thead {
+  background-color: var(--dark3);
+}
+
+.allFoodsTable th,
+.allFoodsTable td {
+  border: 1px solid var(--dark4);
+  padding: 0.75rem;
+  text-align: left;
+  color: var(--textColor);
+}
+
+.tableZoom {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--dark4);
+  color: var(--textColor);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: background 0.2s ease;
+}
+.tableZoom:hover {
+  background: var(--dark5);
+}
+.tableZoomBtn {
+  font-size: 1.25rem;
+}
+
+.bottomSection {
+  display: flex;
+  background-color: var(--dark1);
+}
+
+/* Left*/
+.quickFoodAdd {
+  flex: 0 0 50%;
+  background-color: var(--dark2);
+  padding: 1rem;
+  border-right: 1px solid var(--dark4);
+  box-sizing: border-box;
+}
+
+.quickFoodAdd label {
+  display: block;
+  margin: 0.5rem 0 0.2rem;
+}
+
+.quickFoodAdd input,
+.quickFoodAdd select {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: var(--dark4);
+  border: none;
+  border-radius: 4px;
+  color: var(--textColor);
+  margin-bottom: 1rem;
+}
+
+.barChartContainer {
+  background-color: var(--dark2);
+  padding: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.modifyImage {
+  display: none;
+}
+.dropZone {
+  width: 100px;
+  height: 100px;
+  border: 2px dashed var(--dark7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 0.7rem;
+}
+
+.previewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+form.modifyContainer .modifyText {
+  display: flex;
+  flex-direction: column;
+}
+
+form.modifyContainer .modifyText label {
+  display: block;
+  margin: 0.5rem 0 0.7rem;
+}
+
+form.modifyContainer .modifyText input {
+  display: block;
+  width: 100%;
+}

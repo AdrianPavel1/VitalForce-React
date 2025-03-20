@@ -91,6 +91,8 @@ function Meals(props) {
         console.log("Meal deleted successfully:", response.data.message);
 
         setCardMeal((prevMeal) => prevMeal.filter((_, i) => i !== index));
+
+        setIsAnimating(true);
       }
     } catch (error) {
       console.error(
@@ -281,10 +283,7 @@ function Meals(props) {
   };
 
   useEffect(() => {
-    if (cardMeal.length > 0) {
-      handleAddToDatabse();
-      // sendMacrosData();
-    }
+    handleAddToDatabse();
   }, [cardMeal]);
 
   const handleKeyPress = (e) => {
@@ -479,7 +478,7 @@ function Meals(props) {
                 }`}
                 onClick={() => handleSendAllDataToDatabase()}
               >
-                Save All
+                Save Changes
               </button>
             </div>
 

@@ -216,6 +216,12 @@ function TrackProgress() {
 
   useEffect(() => {
     getMacrosData(choosedDate);
+
+    const interval = setInterval(() => {
+      getMacrosData(choosedDate);
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, [choosedDate]);
 
   const calculatePercentage = (consumed, total) => {

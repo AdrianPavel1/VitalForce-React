@@ -1,6 +1,7 @@
-import express from "express";
+import express, { request, response } from "express";
 import { connectToDataBase } from "../lib/db.js";
 import bcrypt from "bcrypt";
+import multer from "multer";
 const router = express.Router();
 router.post("/register", async (req, res) => {
   const {
@@ -223,7 +224,6 @@ router.get("/get-macros", async (req, res) => {
 });
 
 router.post("/add-macros", async (req, res) => {
-  console.log("Request body:", req.body);
   const { username, calories, proteins, carbs, fats, date } = req.body;
 
   try {
@@ -394,20 +394,19 @@ router.post("/is-green", async (req, res) => {
 
     const greenValue = parseInt(green, 10);
     if (isNaN(greenValue)) {
-      console.log("No valid green element sent");
       return res.status(400).json({
         message: "No valid green element sent",
       });
     }
 
     const [existingEntry] = await db.query(
-      "SELECT * FROM card_meal WHERE username = ? AND date = ?",
+      "select * from card_meal where username = ? and date = ?",
       [username, date]
     );
 
     if (existingEntry) {
       await db.query(
-        "UPDATE card_meal SET green = ? WHERE username = ? AND date = ?",
+        "update card_meal set green = ? where username = ? and date = ?",
         [greenValue, username, date]
       );
       return res.status(200).json({ message: "Green updated successfully!" });
@@ -423,17 +422,17 @@ router.post("/is-green", async (req, res) => {
 });
 
 router.get("/take-greens", async (req, res) => {
+  const { username } = req.query;
   try {
     const db = await connectToDataBase();
 
     const [result] = await db.query(
-      "SELECT DATE_FORMAT(date, '%Y-%m-%d') AS date FROM card_meal WHERE green = ?",
-      [1]
+      "select date_format(date, '%y-%m-%d') as date from card_meal where green = ? and username = ?",
+      [1, username]
     );
 
     return res.status(200).json(result);
   } catch (err) {
-    console.log("error on green meals", err);
     return res.status(500).json({ message: "server error", err });
   }
 });
@@ -460,22 +459,372 @@ router.get("/getUser-goal", async (req, res) => {
 
 router.get("/get-mealsExamples", async (req, res) => {
   const { dailyMeal, goal } = req.query;
-  console.log("Received parameters:", { dailyMeal, goal });
+
   try {
     const db = await connectToDataBase();
 
-    const query = `select * from ${db.escapeId(dailyMeal)} where goal = ?`;
-    const [rows] = await db.query(query, [goal]);
+    const query = `select * from ${dailyMeal} where goal = ?`;
+    const [rows] = await db.query(query, goal);
 
-    console.log("Database rows:", rows);
-    if (rows.length > 0) {
-      return res.status(200).json(rows);
+    const results = rows.map((row) => ({
+      ...row,
+      image: row.image ? row.image.toString("base64") : null,
+    }));
+
+    if (results.length > 0) {
+      return res.status(200).json(results);
     } else {
       return res.status(404).json({ message: "No meals found" });
     }
   } catch (err) {
     console.error("Error fetching meals examples:", err);
     return res.status(500).json({ message: "server error", err });
+  }
+});
+
+//---------------Admin page section----------------
+
+router.get("/getUsers", async (req, res) => {
+  try {
+    const db = await connectToDataBase();
+
+    const query = `select * from users`;
+    const [rows] = await db.query(query);
+
+    if (rows.length > 0) {
+      const users = rows.map((user) => [user.username, user.email]);
+      return res.status(200).json(users);
+    } else {
+      return res.status(404).json({ message: "No users found" });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "server error", err });
+  }
+});
+
+router.get("/getUsersDetails", async (req, res) => {
+  try {
+    const db = await connectToDataBase();
+    const query =
+      "select profile_id, username, age, bodyType, goal,weight, height, physicalActivity, gender FROM user_profiles";
+    const [rows] = await db.query(query);
+
+    if (rows.length > 0) {
+      return res.status(200).json(rows);
+    } else {
+      return res.status(404).json({ message: "No user profiles found" });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "Server error", err });
+  }
+});
+
+router.get("/Breakfast", async (req, res) => {
+  try {
+    const db = await connectToDataBase();
+    const query = "select * from breakfast";
+    const [rows] = await db.query(query);
+
+    const results = rows.map((row) => ({
+      ...row,
+      image: row.image ? row.image.toString("base64") : null,
+    }));
+
+    console.log(results);
+
+    if (results.length > 0) {
+      return res.status(200).json(results);
+    } else {
+      return res.status(404).json({ message: "No foods registered" });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "Server error", err });
+  }
+});
+
+router.get("/Lunch", async (req, res) => {
+  try {
+    const db = await connectToDataBase();
+    const query = "select * from lunch";
+    const [rows] = await db.query(query);
+
+    if (rows.length > 0) {
+      return res.status(200).json(rows);
+    } else {
+      return res.status(404).json({ message: "No foods registered" });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "Server error", err });
+  }
+});
+
+router.get("/Dinner", async (req, res) => {
+  try {
+    const db = await connectToDataBase();
+    const query = "select * from dinner";
+    const [rows] = await db.query(query);
+
+    if (rows.length > 0) {
+      return res.status(200).json(rows);
+    } else {
+      return res.status(404).json({ message: "No foods registered" });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "Server error", err });
+  }
+});
+
+router.put("/:mealType/modify", async (req, res) => {
+  try {
+    const db = await connectToDataBase();
+    const { mealType } = req.params;
+
+    const tableName = await (mealType.charAt(0).toLowerCase() +
+      mealType.slice(1));
+
+    const { itemId, modifyOption, modifiedText } = req.body;
+    const query = `update ${tableName} set ${modifyOption} = ? where id = ?`;
+
+    const [result] = await db.query(query, [modifiedText, itemId]);
+
+    if (result.affectedRows > 0) {
+      return res.status(200).json({ message: "Update successsfully" });
+    } else {
+      return res.status(404).json({ message: "Item not found" });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "Error", err });
+  }
+});
+
+router.post("/:mealType/add", async (req, res) => {
+  try {
+    const { mealType } = req.params;
+
+    const tableName = mealType.charAt(0).toLowerCase() + mealType.slice(1);
+    console.log(tableName);
+    const {
+      name,
+      goal,
+      quantity,
+      proteins,
+      carbohydrates,
+      fat,
+      ingredients,
+      method,
+      image,
+    } = req.body;
+
+    const db = await connectToDataBase();
+
+    const query = `
+    insert into ${tableName} 
+    (name, goal, quantity, proteins, carbohydrates, fat, ingredients, method, img) 
+    values (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+
+    const [result] = await db.query(query, [
+      name,
+      goal,
+      quantity,
+      proteins,
+      carbohydrates,
+      fat,
+      ingredients,
+      method,
+      image,
+    ]);
+
+    if (result.affectedRows > 0) {
+      return res.status(200).json({
+        message: "Meal added successfully",
+      });
+    }
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: "Server error", error: err.message });
+  }
+});
+
+router.post("/:mealType/deleteRow", async (req, res) => {
+  try {
+    const { mealType } = req.params;
+
+    const tableName = mealType.charAt(0).toLowerCase() + mealType.slice(1);
+
+    console.log(tableName);
+    const { id } = req.body;
+
+    const db = await connectToDataBase();
+
+    const query = `delete from ${tableName} where id = ?`;
+
+    const [result] = await db.query(query, [id]);
+
+    if (result.affectedRows > 0) {
+      return res.status(200).json({
+        message: "Meal deleted successfully",
+      });
+    }
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: "Server error", error: err.message });
+  }
+});
+
+router.get("/getHomeDetails", async (req, res) => {
+  try {
+    const db = await connectToDataBase();
+
+    const queryUsers = `
+      select count(*) as totalProfiles,
+       sum(case when goal = 'weight loss' then 1 else 0 end) as weightLossCount,
+       sum(case when goal = 'muscle gain' then 1 else 0 end) as muscleGainCount
+from user_profiles;
+    `;
+    const [results] = await db.query(queryUsers);
+
+    const queryFoods = `select count(*) as foodsNumber from foods `;
+
+    const [foodsResults] = await db.query(queryFoods);
+
+    const homePageDetails = {
+      userNumbers: results[0].totalProfiles,
+      weightLossCount: results[0].weightLossCount,
+      muscleGainCount: results[0].muscleGainCount,
+      foodsTotal: foodsResults[0].foodsNumber,
+    };
+
+    return res.status(200).json(homePageDetails);
+  } catch (err) {
+    return res.status(500).json({ message: "Server error", err });
+  }
+});
+
+router.get("/getAllFoods", async (req, res) => {
+  try {
+    const db = await connectToDataBase();
+
+    const query = "select * from foods";
+
+    const [response] = await db.query(query);
+
+    return res.status(200).json(response);
+  } catch (err) {
+    return res.status(500).json({ message: "Server error", err });
+  }
+});
+
+router.get("/getFoodChartTotals", async (req, res) => {
+  try {
+    const db = await connectToDataBase();
+
+    const query =
+      "select category, count(*) as count from foods group by category";
+    const [result] = await db.query(query);
+
+    const foodTotals = {
+      meat: 0,
+      eggs: 0,
+      dairy: 0,
+      grains: 0,
+      nuts: 0,
+      vegetables: 0,
+      fruits: 0,
+      legumes: 0,
+      plantBased: 0,
+      seeds: 0,
+      seafood: 0,
+    };
+
+    result.forEach((element) => {
+      foodTotals[element.category] = element.count;
+    });
+    return res.status(200).json(foodTotals);
+  } catch (err) {
+    return res.status(500).json({
+      message: "Server error",
+      err,
+    });
+  }
+});
+
+router.delete("/deleteFood/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const db = await connectToDataBase();
+
+    const query = "delete from foods where id =?";
+    const [response] = await db.query(query, id);
+    console.log(id);
+
+    if (response.affectedRows > 0) {
+      return res.status(200);
+    }
+  } catch (err) {
+    return res.status(500).json({
+      message: "Server error",
+      err,
+    });
+  }
+});
+
+router.post("/addFood", async (req, res) => {
+  const food = req.body;
+  try {
+    const db = await connectToDataBase();
+
+    const query = `insert into foods 
+      (name, calories_per_100g, fat_per_100g, protein_per_100g, carbs_per_100g, category) 
+      values (?, ?, ?, ?, ?, ?)`;
+    const [response] = await db.query(query, [
+      food.name,
+      food.calories_per_100g,
+      food.fat_per_100g,
+      food.protein_per_100g,
+      food.carbs_per_100g,
+      food.category,
+    ]);
+
+    return res
+      .status(200)
+      .json({ message: "Food added successfully", response });
+  } catch (err) {
+    console.error("Database error:", err);
+    return res.status(500).json({
+      message: "Server error",
+      error: err.message,
+    });
+  }
+});
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+router.post("/uploadImage", upload.single("image"), async (req, res) => {
+  try {
+    const title = req.body.title;
+
+    const tableName = title.charAt(0).toLowerCase() + title.slice(1);
+
+    const db = await connectToDataBase();
+
+    const query = `update ${tableName} set image = ? where id = (select max(id) from ${tableName})`;
+
+    const [response] = await db.query(query, [req.file.buffer]);
+
+    return res.status(200).json({
+      message: "Image successfully added",
+      response,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "Eroare de server",
+      error: err.message,
+    });
   }
 });
 

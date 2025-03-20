@@ -22,8 +22,8 @@
 .saveButtonMeal,
 .saveChanges {
   border-radius: 5px;
-  width: 90px;
-  height: 50%;
+  /* width: 90px;
+  height: 50%; */
   background-color: transparent;
   cursor: pointer;
   border: 2px solid #00a2ff;
@@ -31,7 +31,7 @@
   font-weight: bold;
   transition: all 0.3s ease;
   margin: 20px;
-  padding: 10px;
+  padding: 0.5rem;
 }
 .animate {
   border: none;

@@ -45,6 +45,9 @@ const Header = () => {
         <nav>
           <ul className={styles.navList}>
             <li>
+              <Link to="/Admin">Admin</Link>
+            </li>
+            <li>
               <Link to="/mainMenu">Home</Link>
             </li>
             <li>

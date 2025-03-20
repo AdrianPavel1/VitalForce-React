@@ -55,12 +55,11 @@ const Calendar = ({ onDateSelect }) => {
   };
 
   useEffect(() => {
-    if (username) {
-      setGreenMeals([]);
-
+    const intervalId = setInterval(() => {
       takeGreenMeals();
-    }
-  }, [username]);
+    }, 5000);
+    return () => clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
     if (currentDate) {
@@ -76,13 +75,13 @@ const Calendar = ({ onDateSelect }) => {
     <>
       <div className={styles.calendar}>
         <h1>Strake Calendar</h1>
-        <button onClick={afisare}>AF</button>
+
         <div className={styles.header}>
-          <button onClick={() => changeMonth(-1)}>◀</button>
+          <button onClick={() => changeMonth(-1)}>◀️</button>
           <h2>
             {monthName} {year}
           </h2>
-          <button onClick={() => changeMonth(1)}>▶</button>
+          <button onClick={() => changeMonth(1)}>▶️</button>
         </div>
 
         <div className={styles.month}>
