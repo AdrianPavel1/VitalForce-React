@@ -1,6 +1,7 @@
 # Vital Force
 There is my fully functional responsive website project.
 It contains 2 folders, 1 with mySQL DB and one with React website.
+NOTE: This project is created to apply my computer science knowledge, not for sale or reuse by others.
 
 #What is this project about
 This project is about fitness and is dedicated to two main types of people: those who want to lose weight and those who want to build muscle.
