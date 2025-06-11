@@ -14,9 +14,9 @@ The custom meal section is a page where you can see different types of meals sui
 
 1. In order to start the project after downloading all the files, go to VSCode or whatever code editor you use and type in the console the following commands, followed by an enter (to see the project in the browser):
 
-First command: cd vital-force
+First command: cd vital-force;
 
-Second command: npm run dev
+Second command: npm run dev;
 
 This will give a localhost link, and you can access it on any browser.
 
@@ -31,8 +31,9 @@ PORT = 3000
 
 3. In a new console, write the following to start the server and connect to the DB:
 
-First command: cd vital-force/server
-Second command: npm start
+First command: cd vital-force/server;
+
+Second command: npm start;
 
 
 4. If you want to see the experience of an old user, you can log in with the following : 
