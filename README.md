@@ -30,8 +30,9 @@ PORT = 3000
 
 
 3. In a new console, write the following to start the server and connect to the DB:
-cd vital-force/server
-npm start
+
+First command: cd vital-force/server
+Second command: npm start
 
 
 4. If you want to see the experience of an old user, you can log in with the following : 
