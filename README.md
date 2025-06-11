@@ -1,5 +1,5 @@
 # Vital Force
-There is my fully functional responsive website project.
+Here is my fully functional responsive website project.
 It contains 2 folders, 1 with mySQL DB and one with React website.
 NOTE: This project is created to apply my computer science knowledge, not for sale or reuse by others.
 
@@ -10,25 +10,31 @@ In the progress section, you can track your meals based on the calendar, and on 
 
 The custom meal section is a page where you can see different types of meals suited to your fitness goals.
 
-#how to start
-1.
-In order to start the project after downloading all the files , go in VsCode or whatever code editor you use and type in console (to see the project in browser):
-cd vital-force
-npm run dev
+**how to start**
 
-this will give a localHost link.
+1. In order to start the project after downloading all the files, go to VSCode or whatever code editor you use and type in the console the following commands, followed by an enter (to see the project in the browser):
 
-2.Change the .env with your downloaded DB data from the program file :
-vital-force/server/.env
+First command: cd vital-force
 
-3.
-In a new console write the following to start the server:
+Second command: npm run dev
+
+This will give a localhost link, and you can access it on any browser.
+
+2. Change the .env with your downloaded DB data from the program file :
+vital-force/server/.env (e.g, my .env looks like that:)
+DB_HOST="localhost"
+DB_USER="root"
+DB_PASSWORD=""
+DB_NAME="vf"
+PORT = 3000
+
+
+3. In a new console, write the following to start the server and connect to the DB:
 cd vital-force/server
 npm start
 
-this will help you connect to to DB. 
 
-4.If you want to see the experience of an old user you can log in with the following : 
+4. If you want to see the experience of an old user, you can log in with the following : 
 user: Adrian11@gmail.com
 password:11
 
